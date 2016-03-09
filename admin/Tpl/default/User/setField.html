@@ -1,0 +1,119 @@
+<include file="Public:header" />
+<div>
+	<h1 class='title'>用户资料设置</h1>
+</div>
+
+<div class="toolbar">
+	<a href="{:U('User/addfield')}" class="btn_aw"><span>添加字段</span></a> <a
+		href="javascript:void(0);" class="btn_aw" onclick="deleteField();"><span>删除字段</span></a>
+</div>
+<div class='setProfile'>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<th class='checkbox'><input type="checkbox" id="checkbox_handle"
+				onclick="checkAll(this)" value="0"> <label for="checkbox"></label>
+			</th>
+			<th class="line_l">字段键名</th>
+			<th class="line_l">字段名称</th>
+			<th class="line_l">所属模块</th>
+			<th class="line_l">是否启用</th>
+			<th class="line_l">操作</th>
+		</tr>
+		<volist id="vo" name="list">
+		<tr class='over' id="field_{$vo.id}">
+			<td class='checkbox'><input type="checkbox" name="checkbox"
+				id="checkbox2" onclick="checkon(this)" value="{$vo.id}"></td>
+			<td>{$vo.key}</td>
+			<td>{$vo.name}</td>
+			<td><switch name="vo.module">
+				<case value="intro">个人情况</case>
+				<case value="contact">联系方式</case></switch></td>
+			<td><eq name="vo.status" value="1">是<else />否</eq></td>
+			<td><a href="javascript:void(0);"
+				onclick="deleteField('{$vo['id']}');">删除</a></td>
+		</tr>
+		</volist>
+	</table>
+</div>
+<div class="toolbar">
+	<a href="{:U('User/addfield')}" class="btn_aw"><span>添加字段</span></a> <a
+		href="javascript:void(0);" class="btn_aw" onclick="deleteField();"><span>删除字段</span></a>
+</div>
+
+<script>
+//鼠标移动表格效果
+$(document).ready(function(){
+    $(".over").hover(
+      function () {
+        $(this).addClass("hover");
+      },
+      function () {
+        $(this).removeClass("hover");
+      }
+    );
+});
+
+function checkon(obj){
+    if( obj.checked == true ){
+        $(obj).parents('tr').addClass('checkon') ;
+    }else{
+        $(obj).parents('tr').removeClass('checkon') ;
+    }
+}
+
+function checkAll(obj){
+    if( obj.checked == true ){
+        $('input[name="checkbox"]').attr('checked','true');
+        $('.over').addClass("checkon");
+    }else{
+        $('input[name="checkbox"]').removeAttr('checked');
+        $('.over').removeClass("checkon");
+    }
+}
+
+//获取已选择用户的ID数组
+function getChecked() {
+    var ids = new Array();
+    $.each($('table input:checked'), function(i, n){
+        ids.push( $(n).val() );//像数组末尾添加数据
+    });
+    return ids;//数组
+}
+//删除操作
+function deleteField(ids) {
+	var length = 0;
+    if(ids) {
+        length = 1;         
+    }else {
+        ids    = getChecked();
+        length = ids.length;
+        ids    = ids.toString();
+    }
+    if(ids=='') {
+        ui.error('请先选择一个字段');
+        return ;
+    }
+    if(confirm('您将删除'+length+'条记录，删除后无法恢复，确定继续？')) {
+        $.post("{:U('User/deleteField')}",{ids:ids},function(res){
+            if(res=='1') {
+                ui.success('删除成功');
+                removeField(ids);
+            }else {
+                ui.error('删除失败');
+            }
+        });
+    }
+}
+
+function removeField(ids) {
+    ids = ids.split(',');
+    for(i = 0; i < ids.length; i++) {
+        $('#field_'+ids[i]).remove();
+    }
+}
+
+
+</script>
+
+
+<include file="Public:footer" />

@@ -1,0 +1,87 @@
+<?php global $globalInfo;global $glob; ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"/>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$globalInfo['title']}{$globalInfo['page']}{$globalInfo['cms_name']}</title>
+<meta name="keywords" content="{$globalInfo['site_keywords']}" />
+<meta name="description" content="{$globalInfo['site_description']}" />
+<script type="text/javascript">
+<!--
+	//指定当前组模块URL地址
+	//预定义javascript变量
+	var	URL		=	'__URL__';
+	var	APP		=	'__APP__';
+	var	PUBLIC	=	'__STATIC__';
+	var	ROOT	=	'__ROOT__';
+	var PIC     =   '__PIC__';  //图片储存目录
+	var MID		=	'{$mid}';
+	var UID		=	'{$uid}';
+	var length  =   '{$length}'; //文章字数
+	var comLen  =   '{$comLen}'; //评论字数
+	var minlength  =   '{$minlength}'; 
+	var minComLen  =   '{$minComLen}'; 	
+//-->
+</script>
+<script type="text/javascript" src="__STATIC__/js/jquery/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="__STATIC__/js/jquery/jquery.form.js"></script>
+{$headlink}
+</head>
+<body>
+<div class="toper">
+<div class='block'>
+<div class="qingcms_logo"><a href='{$globalInfo["url"]}' title="{$globalInfo['site_name']}">QingCms</a></div>
+<div class="channel">
+<ul> 
+<li class='topTab'><a href='__APP__' class='tablink <if condition="$TopNav eq index">hover</if>' >首页</a></li>
+<volist name='topCateNav' id='vo'>
+<li class='topTab <?php if($vo["url"]==null) echo "dropdown"; ?>'> 
+<a class="tablink link2 <if condition='$vo[nid] eq $TopNav '>hover</if>" <if condition="$vo['url'] gt null"> href='{$vo["url"]}' <else/>  href='{:U("Index/$vo[nid]")}' </if>> {$vo['name']}</a>
+   <?php if(is_array($vo["cate2"]) && $vo["url"]==''){ ?>
+    <div class="hiddenlink">
+    <volist name='vo["cate2"]' id='vo2'>
+    <a href='{:U("Index/$vo2[nid]")}'>{$vo2['name']}</a>
+    </volist>
+    </div>
+    <?php } ?>
+</li>
+</volist>
+<li class='topTab dropdown'>
+<a href='__APP__/Pub' class="tablink <if condition=" 'Pub' eq $TopNav ">hover</if>">发布</a>
+    <div class="hiddenlink"> 
+    <a href='{:U("Pub/pub?type=0")}'>普通文章</a>
+    <a href='{:U("Pub/pub?type=2")}'>gif图</a>
+    <a href='{:U("Pub/pub?type=3")}'>视频</a>
+    </div>
+</li>
+</ul>
+</div>
+<div class="login">
+{:hook('thirdLogin_icon')}
+<php>if($mid>0){</php>
+<a href=' {:U("Space/index?uid=$mid")}'>{$mname}</a>
+<a href='{:U("User/index")}'>个人中心</a>
+<php>if($is_admin==1){</php>
+<a target="_blank" href='__ROOT__/admin.php'>后台管理</a>
+<php>}</php>
+<a href='{:U("Login/logout")}'>退出</a>
+<script>
+$(document).ready(function(){
+message.show();
+setInterval("message.show()",60000);//ms 60000ms=1min
+});
+</script>
+<php>}else{</php>
+<a href='{:U("Login/login")}'>登录</a>
+<a href='{:U("Login/register")}'>注册</a>
+<php>}</php>
+</div>
+<div class='c'></div>
+<div class='message_bar' style='display:none;'>
+<ul class="message_list">
+<li>没有消息</li>
+</ul>
+<a href='javascript:void(0)' onclick='message.close();' class='close'></a>
+</div>
+</div>
+</div>

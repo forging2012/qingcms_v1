@@ -1,0 +1,91 @@
+<include file="Public:header" />
+<h1 class='title'>附件设置</h1>
+<div class='attachment'>
+<form action="__URL__/setAttachment" method="post">
+<h3 class="title">上传设置</h3>
+<ul class='line'>
+<li> 
+<span class="span_l">上传允许大小：</span>
+<span class="span_r">
+<input type="text" name='maxSize' size='10' value='{$maxSize}'>单位：兆/M
+</span>
+</li>
+</ul>
+<h3 class="title">缩略图设置</h3>
+<ul class='line'>
+<li> 
+<span class="span_l">小图宽高：</span>
+<span class="span_r">
+<input type="text" name='thumb_sx' size='5' value='{$thumb_sx}'>X
+<input type="text" name='thumb_sy' size='5' value='{$thumb_sy}'>
+</span>
+宽高的限定，推荐大小：120X120
+</li>
+<li> 
+<span class="span_l">大图宽高：</span>
+<span class="span_r">
+<input type="text" name='thumb_mx' size='5' value='{$thumb_mx}'>X
+<input type="text" name='thumb_my' size='5' value='{$thumb_my}'>
+</span>
+宽高的限定，推荐大小：500X2000
+</li>
+<li> 
+<span class="span_l">是否删除原图：</span>
+<span class="span_r">
+是 <input type="radio" name='removeOrigin' value='1' <if condition="$removeOrigin eq 1">checked='checked'</if> >
+否 <input type="radio" name='removeOrigin' value='0'<if condition="$removeOrigin eq 0">checked='checked'</if> >
+</span>
+</li>
+</ul>
+<h3 class="title">水印设置</h3>
+<ul class='line'>
+<li> 
+<span class="span_l">是否开启水印：</span>
+<span class="span_r">
+是 <input type="radio" name='water' value='1' <if condition="$water eq 1">checked='checked'</if> >
+否 <input type="radio" name='water' value='0'<if condition="$water eq 0">checked='checked'</if> >
+</span>
+</li>
+<li> 
+<span class="span_l">水印位置：</span>
+<span class="span_r">
+		    <select name='waterPosition'>
+					<volist name='waterPositionArr' id='vo'>
+					<option value="{$key}" <?php if($waterPosition==$key) echo "selected='selected'"; ?> >{$vo}</option>
+					</volist>
+			</select>
+</span>
+</li>
+<li> 
+<span class="span_l">添加水印的条件：</span>
+<span class="span_r">
+宽<input type="text" name='water_minWidth' size="10" value='{$water_minWidth}'>
+X高<input type="text" name='water_minHeight' size="10" value='{$water_minHeight}'>
+单位：px
+</span>
+</li>
+ 
+<li> 
+<span class="span_l">水印边距：</span>
+<span class="span_r">
+左右<input type="text" name='padding_x' size="10" value='{$padding_x}'>
+上下<input type="text" name='padding_y' size="10" value='{$padding_y}'>
+单位：px
+</span>
+</li>
+
+<li> 
+<span class="span_l">水印图片：</span>
+<span class="span_r">
+<input type="text" name='waterFile' value='{$waterFile}'>
+默认为：./static/image/water.png
+</span>
+</li>
+
+</ul>
+<div class="page_btn">
+      <input type="submit" class="btn_input" value="确定">
+</div>
+</form>
+</div>
+<include file="Public:footer" />

@@ -1,0 +1,21 @@
+<include file="Public:header" />
+<div>
+	<h1 class='title'>SEO设置</h1>
+</div>
+<div class='seo'>
+	<form action="__URL__/seo" method="post">
+		<h3 class="title">开启rewrite</h3>
+		<div>
+			<span>是 <input type="radio" name='cateMust' value='1'
+			<if condition="$cateMust eq 1">checked='checked'</if> >
+			</span> <span>否 <input type="radio" name='cateMust' value='0'
+			<if condition="$cateMust eq 0">checked='checked'</if>>
+			</span>
+		</div>
+
+		<div style='margin: 10px 0;'>
+			<input class="btn_input" type="submit" value="确定">
+		</div>
+	</form>
+</div>
+<include file="Public:footer" />

@@ -1,0 +1,37 @@
+<include file="Public:header" />
+<div>
+	<h1 class='title'>注册/登录控制</h1>
+</div>
+<div class='reglogin'>
+	<table>
+		<tbody>
+
+			<tr>
+				<td colspan="2">允许新用户注册:</td>
+			</tr>
+			<tr class='trboder'>
+				<td><input type="text" name=''></td>
+				<td>站点名称，将显示在浏览器窗口标题等位置</td>
+			</tr>
+
+			<tr>
+				<td colspan="2">新用户注册验证:</td>
+			</tr>
+			<tr class='trboder'>
+				<td><input class="radio" type="radio"
+					name="reglogin[regverify]" value="0">无<br /> <input
+					class="radio" type="radio" name="reglogin[regverify]" value="1">Email
+					验证<br /> <input class="radio" type="radio"
+					name="reglogin[regverify]" value="2">人工审核<br /></td>
+				<td>选择“无”用户可直接注册成功；选择“Email 验证”将向用户注册 Email
+					发送一封验证邮件以确认邮箱的有效性（开启“通过邮件发送注册链接”该设置自动通过验证）；选择“人工审核”将由管理员人工逐个确定是否允许新用户注册</td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="submit" value='提交'></td>
+			</tr>
+		</tbody>
+	</table>
+
+
+</div>
+<include file="Public:footer" />

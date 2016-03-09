@@ -1,0 +1,165 @@
+<include file="Public:header"/>
+<h1 class='title'>栏目管理 </h1>
+
+<div class='cate'>
+
+<div class="toolbar">
+<a href="javascript:void(0);" class="btn_aw" onclick="show_all();"><span>全部展开</span></a> 
+<a href="javascript:void(0);" class="btn_aw" onclick="hide_all();"><span>全部折叠</span></a>
+</div>
+
+
+<div>
+<form action="" method="post" id='saveCateF'>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tbody id='tbody'>
+<tr>
+<th width="4%">折叠</th>
+<th width="4%">选择</th>
+<th width="6%">文档数</th>
+<th width="20%">名称</th>
+<th>操作</th>
+</tr>
+
+<volist name='cateTop' id='vo'>
+<tr class='cate1'>
+<td><a href='javascript:void(0);'  class='zhe' is='1' cid="{$vo['id']}">[-]</a></td>
+<td><input name="select[]" type="checkbox" value="{$vo['id']}" ></td>
+<td>{$vo['id']|countContent=###}</td>
+<td>{$vo['name']}   [ {$vo['nid']} ]</td>
+<td class='tr_right'>  
+<a target='_blank' href='__ROOT__/index.php/Index/{$vo["nid"]}'>预览</a>
+<a target='iframe' href='__URL__/contentlist/cid/{$vo["id"]}'>查看文档</a>
+<a target='iframe' href="{:U('Content/cateMove')}&ids={$vo['id']}">移动</a>
+<a href="javascript:void(0);"  onclick="del({$vo['id']});">删除</a>
+</td>
+</tr>
+<volist name='vo["cate2"]' id='vo2'>
+<tr  class='cate2 parentid_{$vo["id"]}'>
+<td></td>
+<td><input name="select[]" type="checkbox" value="{$vo2['id']}" ></td>
+<td>{$vo2['id']|countContent=###}</td>
+<td><div class='nav2'>{$vo2['name']}   [ {$vo2['nid']} ]</div></td>
+<td class='tr_right'>  
+<a target='_blank' href='__ROOT__/index.php/Index/{$vo2["nid"]}'>预览</a>
+<a target='iframe' href='__URL__/contentlist/cid/{$vo2["id"]}'>查看文档</a>
+<a target='iframe' href="{:U('Content/cateMove')}&ids={$vo2['id']}">移动</a>
+<a href="javascript:void(0);"  onclick="del({$vo2['id']});">删除</a>
+</td>
+</tr>
+</volist>
+</volist>
+</tbody>
+</table>
+<div class="toolbar">
+<a href="javascript:void(0);" class="btn_aw" onclick="selectAll();"><span>全选</span></a>
+<a href="javascript:void(0);" class="btn_aw" onclick="selectNo();"><span>取消</span></a>
+<a href="javascript:void(0);" class="btn_aw" onclick="move();"><span>移动</span></a> 
+<a href="javascript:void(0);" class="btn_aw" onclick="del();"><span>删除</span></a> 
+</div>
+</form>
+</div>
+</div>
+<script type="text/javascript">
+<!--
+$(document).ready(function(){
+	//折叠监听 0 +  1 -
+	$('.zhe').click(function(){
+		 var v=$(this).attr('cid');
+		 if($(this).attr('is')==1){
+			 $('.parentid_'+v).hide();
+			 $(this).attr('is',0);
+			 $(this).html('[+]');
+		 }else{
+			 $('.parentid_'+v).show();
+			 $(this).attr('is',1);
+			 $(this).html('[-]');
+		 }
+	});	
+	//监听鼠标
+$("tr.cate2").mouseover(function(){
+	  $(this).attr('bgColor','#E9E9E4');
+	}).mouseout(function(){
+		$(this).removeAttr('bgColor');
+	});
+	
+});
+//获取已选择用户的ID数组
+function getChecked(){
+    var ids = new Array();
+    $.each($('input:checked'), function(i, n){
+        ids.push( $(n).val() );//像数组末尾添加数据
+    });
+    return ids;//数组
+}
+/**
+ * 移动到其他栏目
+ */
+ function move(ids){
+	    if(ids) {
+	       var length = 1;         
+	    }else {
+	        ids=getChecked();
+	        length=ids.length;
+	        ids=ids.toString();
+	    }	
+	    if(ids=='') {
+	        ui.error('至少选择一个栏目');
+	        return false;
+	    }
+	   // alert(ids);
+	   location.href="{:U('Content/cateMove')}"+"&ids="+ids;
+}
+
+/**
+ * 选择全部
+ */
+ function selectAll(){
+	$(':checkbox').attr('checked','checked');
+}
+ function selectNo(){
+	$(':checkbox').removeAttr('checked');
+}
+ /**
+  * 折叠全部
+  */
+  function hide_all(){
+ 	$('.cate2').hide();
+ 	$('.zhe').html('[+]');
+ 	$('.zhe').attr('is',0);
+ }
+  function show_all(){
+ 	$('.cate2').show();
+ 	$('.zhe').html('[-]');
+ 	$('.zhe').attr('is',1);
+ }
+  /**
+   * 删除
+   */
+   function del(ids){
+      if(ids) {
+         var length = 1;         
+      }else {
+          ids=getChecked();
+          length=ids.length;
+          ids=ids.toString();
+      }
+      if(ids=='') {
+          ui.error('至少选择一个栏目');
+          return false;
+      }
+      if(confirm('您将删除'+length+'个栏目，删除后无法恢复，确定继续？')) {
+          $.post("{:U('Content/delCate')}",{ids:ids},function(res){
+              if(res>'0') {
+                  ui.success('删除成功');
+                  ui.reload();
+              }else {
+                  ui.error('删除失败');
+              }
+         });
+      }
+  }
+
+//-->
+</script>
+<include file="Public:footer"/>

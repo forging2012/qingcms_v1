@@ -1,0 +1,39 @@
+<div class='c'></div>
+</div>
+<?php if(MODULE_NAME=='Index' && ACTION_NAME=='index'){ ?>
+<div class='block'>
+<div class='friendlink'>
+友情链接：
+<volist name='flist' id='vo'>
+<a target='_blank'  href='{$vo["url"]}'>{$vo['name']}</a>
+</volist>
+</div>
+</div>
+<?php } ?>
+<?php if($globalInfo['ad']['bottom'] && (MODULE_NAME=='Index' || MODULE_NAME=='Space' ||MODULE_NAME=='Search') ){ ?>
+<div class='block'>
+<volist name="globalInfo['ad']['bottom']" id='vo'>
+<div class='adBox-bottom'>
+{$vo}
+</div>
+</volist>
+</div>
+<?php } ?>
+<div class="footer block">
+<span class='right'>
+<strong><a href="__ROOT__/about.htm">关于{$globalInfo['site_name']}</a></strong>
+<php>if($globalInfo['icp']!=''){</php>
+（<a href="http://www.miitbeian.gov.cn/">{$globalInfo['icp']}</a>）
+<php>}</php>
+<?php 
+if($globalInfo['countCode']){
+	//echo $globalInfo['countCode'];
+}
+?>
+</span>
+<span>
+Powered by <strong><a href="http://www.QingCms.com/">QingCms</a></strong> V1.0
+</span>
+</div>
+</body>
+</html>

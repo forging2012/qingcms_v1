@@ -1,0 +1,28 @@
+<div class='loginBlock'>
+<h1>登录：</h1>
+<div class='login_l'>
+<form action="{:U('Login/doLogin')}" method="post">
+<ul>
+<li>
+<div class='login_li_1'>邮箱：</div>
+<div class='login_li_2'><input type="text" name="email" value=""></div>
+</li>
+<li>
+<div class='login_li_1'>密码：</div>
+<div class='login_li_2'><input type="password" name="password" value=''></div>
+</li>
+<li>
+<div class='login_li_1'>&nbsp;</div>
+<div class='login_li_2'>
+<input class='btn_input' type="submit" value='登录'>
+<?php if($isPop>0){ ?>
+<input type='hidden' name="isPop" value='1'>
+<?php } ?>
+</div>
+</li>
+</ul>
+</form>
+</div>
+{:hook('thirdLogin')}
+<div class='c'></div>
+</div>

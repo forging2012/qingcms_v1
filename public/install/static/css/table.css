@@ -1,0 +1,23 @@
+
+table{
+border: 1px solid #eee;
+font-size: 12px;
+overflow: hidden;
+margin: 2px 4px;
+width:99%;
+text-align: left; 
+border-bottom: none;
+margin-bottom: 20px;
+}
+table td{
+padding: 10px;
+border-bottom: 1px solid #F2F2F2;
+vertical-align: top;
+}
+table th{
+line-height: 24px;
+padding-left:10px;
+border-bottom: 1px solid #eee;
+vertical-align: top;
+}
+table span{margin-left: 6px;}

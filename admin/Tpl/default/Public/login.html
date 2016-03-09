@@ -1,0 +1,84 @@
+<php> global $qc;</php>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$qc['site_name']}管理后台登录...</title>
+<link rel="stylesheet" type="text/css" href="__STATIC__/admin/css.css" />
+<style type="text/css">
+<!--
+body {
+font-family: "Microsoft Yahei", "微软雅黑", Tahoma, Arial, Helvetica, STHeiti;
+font-size: 14px;
+color: #333;
+background:#eee;
+}
+*{margin: 0;padding: 0;}
+li{ list-style-type: none;}
+ul, form, input { 
+font-size:12px; 
+padding:0; 
+margin:0;
+}
+a { color:#3B5998;text-decoration:none;}
+a:hover{ color: #F60;text-decoration: underline;}
+a img { border: none;}
+img{ border: 0px;}
+.box{
+width: 380px;
+margin: 0 auto;
+margin-top: 150px;	
+background:#fff;
+border: 1px solid #CCC;
+border-radius: 3px;
+padding:10px;
+}
+.box h3{
+font-size:18px;
+font-style:normal;
+font-weight:500;
+border-bottom: 1px solid #CCC;
+padding:10px 0 10px 10px; 
+color: #3B5998;
+}
+.fbox{padding: 10px;}
+.box li{line-height: 30px;height:30px;font-size: 14px;padding-left: 10px;margin: 10px 0;}
+.box li input{line-height: 24px;height:24px;width: 200px;border: 1px solid #DDD;padding:2px 5px;
+}
+.box .span_l{ width: 80px;display: inline-block;}
+.box li.verify input{line-height: 26px;width: 80px;}
+.box li.verify img{vertical-align:middle;}
+
+.cr{text-align: center;margin-bottom: 200px;margin-top: 10px; }
+.box .btn_input{line-height: 30px;height:30px;padding:0;font-size: 14px;width:68px;border: 1px solid #3B5998;}
+-->
+</style>
+
+</head>
+<body>
+<div class='box'>
+	      <h3>QingCms 管理后台登录</h3>
+	      <div class='fbox'>
+          <form action="{:U('Public/doLogin')}"  method="post" >
+          <ul>
+          <php>if($email>''){</php>
+          <li><span class='span_l'>邮&nbsp;&nbsp;&nbsp;箱：</span><input type='text' name='' value='{$email}' disabled="disabled" style='background: #eee;'/>  
+          <input type='hidden' name='email' value='{$email}'/>
+          </li>          
+          <php>}else{</php>
+          <li><span class='span_l'>邮&nbsp;&nbsp;&nbsp;箱：</span><input type='text' name='email'/>  </li>
+          <php>}</php>
+          
+          <li><span class='span_l'>密&nbsp;&nbsp;&nbsp;码：</span><input type="password" name='password'/>  </li>
+          <li class='verify'><span class='span_l'>验证码：</span><input type='text' name='verify'/>
+          <a href='javascript:void(0);' title='切换验证码'><img src='{:U("Public/verify")}' onclick="var url='{:U("Public/verify")}';this.src=url+'&'+Math.random();"  /></a>
+          </li>
+          <li><span class='span_l'>&nbsp;</span><input type='submit' value='登录' class='btn_input'/></li>
+          </ul>
+		  </form>
+		  </div>
+</div>
+<div class="cr">Powered by QingCms  <a href='__ROOT__/index.php'>[回到首页]</a></div>
+
+</body>
+</html>

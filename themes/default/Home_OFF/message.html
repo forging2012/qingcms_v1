@@ -1,0 +1,27 @@
+<!-- 系统通知 -->
+<div class='message'>
+<div>
+<ul>
+<volist name='list' id='vo'>
+<li class='notify_li'>
+
+<div class="notify">
+
+<a class='user' target='_blank' href='{:U("Space/index?uid=$vo[from]")}' >
+{$vo['from']|getname=###}:</a>
+{$vo['type']}
+{$vo['data']['tid']|getcontent=###|getShort=###,26}
+
+</div>
+<div class='notifyinfo'> <?php $tid=$vo[data][tid];  ?>
+<span class='time'>{$vo['ctime']|friendlyDate=###}</span><a target='_blank' href='{:U("Index/detail?id=$tid")}'>查看</a> 
+</div>
+
+</li>
+</volist>
+</ul>
+</div>
+{$page}
+<div style='padding: 10px 2px;font-style:italic;'>提示：系统通知为您保存7天后将自动清除...</div>
+</div>
+<div class="shadow"></div>

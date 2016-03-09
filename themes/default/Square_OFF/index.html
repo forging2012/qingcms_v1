@@ -1,0 +1,13 @@
+<include file="Public:header"/>
+<div class="square_l">
+<include file="Square:menu"/>
+</div>
+<div class="square_r">
+<volist name="class" id="vo">
+{:W('Sitesblock',array('classid'=>$vo['classid'],'classname'=>$vo['classname'],'insite'=>$vo['insite']))}
+</volist>
+<div class="c"></div>
+<div>{$page}</div>
+</div>
+<include file="Public:footer"/>
+<br/>

@@ -1,0 +1,17 @@
+<link rel="stylesheet"  type="text/css" href="/QingCms/QingCms/Public/Css/main.css" />
+
+<form action='{:U("Ajax/doSetGroup")}' method="post" onsubmit='group.doset(this);return false;'>
+<div class='pop_setGroup'>
+<div class='list'>
+<volist name='list' id='vo'>
+<label class='label' style="" class="lh25">
+<input type="checkbox"  name="groupid[]" value="{$vo['id']}" <?php if($vo['checked']==1) echo "checked='checked'"; ?> >&nbsp;{$vo['name']}
+</label>
+</volist>
+</div>
+<div class='b'>
+<input type='submit' class='btn' value='确定'/>  <input type='button' class='btn_w' value='取消' onclick="ui.load_close();"/>
+<input type='hidden' name='fid' value='{$fid}'/>
+</div>
+</div>
+</form>

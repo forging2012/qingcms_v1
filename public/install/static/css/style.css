@@ -1,0 +1,75 @@
+*{margin: 0;padding: 0;}
+body{
+font-family: "Microsoft Yahei", "微软雅黑", Tahoma, Arial, Helvetica, STHeiti;
+font-size: 14px;
+color: #666;
+}
+ul,li{list-style: none;}
+.c {
+clear: both;
+font-size: 1px;
+height: 0;
+line-height: 0;
+visibility: hidden;
+}
+.block{width: 960px;margin: 0 auto;}
+
+.main{margin-top: 20px;}
+.main-l{
+float: left;
+border:1px solid #EEE;
+width: 148px;
+border-radius: 2px;
+color: #666;
+font-size: 14px;
+line-height: 40px;
+}
+.main-l h3{
+font-weight: normal;
+background: #EEE;
+text-align: center;
+}
+.main-l ul{
+padding: 10px 0;
+}
+.main-l li{
+line-height: 40px;
+text-align: left;
+padding-left: 46px;
+}
+.main-l li.step-done{
+color:green;
+background: url(../image/li_done.png) 23px 17px no-repeat;		
+}
+.main-l li.step-curr{
+color:#F60;
+background: url(../image/li_curr.png)  23px 17px no-repeat;		
+}
+.main-r{
+margin-left: 152px;
+padding-left:20px;
+min-height: 400px;
+}
+.title h3{
+font-weight: 500;
+border-bottom: 2px solid #eee;
+padding: 4px 0;
+padding-left:4px;
+margin-bottom: 10px;
+}
+span.on{
+width: 14px;
+height: 14px;
+vertical-align: middle;
+margin-right: 5px;
+background: transparent url(../image/on.gif) no-repeat;
+display: inline-block;
+}
+span.off{
+width: 14px;
+height: 14px;
+vertical-align: middle;
+margin-right: 5px;
+background: transparent url(../image/off.gif) no-repeat;
+display: inline-block;
+}

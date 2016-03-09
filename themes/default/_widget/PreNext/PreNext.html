@@ -1,0 +1,9 @@
+<div class='rightBox'>
+<h3 class="title">分类内翻页:&nbsp;&nbsp;{$cateid|getCateNav=###}</h3>
+<div class='preNext'>
+<if condition="$pre eq ''"><a href='#'>完</a><else/><a href='{:U("Index/detail?&id=".$pre)}'>上一条</a> </if>
+<if condition="$next eq ''"><a href='#'>完</a><else/><a href='{:U("Index/detail?&id=".$next)}'>下一条</a> </if>
+
+</div>
+</div>
+<div class="shadow_r"></div>

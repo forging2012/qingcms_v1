@@ -1,0 +1,16 @@
+<include file="Public:header"/>
+<h3>广场</h3>
+<div>
+<volist name="sites" id="vo">
+<div class="sites_class left">
+<h1><a target="_blank" href="__URL__/view/class/{$vo['classid']}"> {$vo['classname']}</a></h1>
+<div class='sites_s'>
+{$vo['insite']}
+</div>
+</div>
+</volist>
+</div>
+<div class="c"></div>
+<div>{$page}</div>
+<include file="Public:footer"/>
+<br/>

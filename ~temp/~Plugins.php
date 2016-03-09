@@ -1,0 +1,1 @@
+<?php  return 'a:2:{s:11:"followBlock";a:1:{s:11:"FollowBlock";a:1:{i:0;s:9:"MainHooks";}}s:14:"stopScrollHere";a:1:{s:10:"ScrollStop";a:1:{i:0;s:15:"ScrollStopHooks";}}}'; ?>

@@ -1,0 +1,34 @@
+<include file="Public:header"/>
+<div class="main_left">
+{:W('Contentblock',array('comment'=>$comment,'mid'=>$mid,'t'=>$detail,'tag'=>$tag))}
+</div>
+<div class='main_right'>
+{:W('PreNext',array('id'=>$detail['id'],'cateid'=>$detail['cateid']))}
+<?php if($diggUser){ ?>
+<div class='rightBox'>
+<h3 class='title'>推荐过该文章的用户</h3>
+<div class='diggUser'>
+<volist name='diggUser' id='vo'>
+<a href='{:U("Space/index?&uid=".$vo["uid"])}'>{$vo['uid']|getname=###}</a>
+</volist>
+</div>
+</div>
+<div class="shadow_r"></div>
+<?php } ?>
+
+<!-- 分享代码 -->
+<?php 
+
+if($globalInfo['shareCode']){
+?>
+<div class='rightBox'>
+<h3 class='title'>分享到</h3>
+<div class='baiduShare'>
+ <?php echo $globalInfo['shareCode'];  ?>
+</div>
+</div>
+<div class="shadow_r"></div>
+<?php } ?>
+<include file="Block:ad-right-2"/>
+</div>
+<include file="Public:footer"/>

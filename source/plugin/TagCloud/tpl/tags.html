@@ -1,0 +1,10 @@
+
+<div class='rightBox'>
+ <h3 class="title">标签云</h3>
+<div class='tag-cloud'> 
+<volist name='list' id='vo'>
+<a  href="__APP__/Search?tag={$vo['tag_id']}" title='{$vo["count"]}篇文章' >{$vo['name']}</a> 
+</volist>
+</div>
+</div>
+<div class="shadow_r"></div>

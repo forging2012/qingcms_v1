@@ -1,0 +1,13 @@
+<?php if($uid!=$mid){ ?>
+
+<div class='followBox'>
+<?php if($relation==0){ ?>
+<a href='javascript:void(0);' onclick='follow.add({$uid},this)'>加关注</a>
+<?php }else if($relation==1){ ?>
+ 已关注<a href='javascript:void(0);' onclick='follow.cancel({$uid},this)'>取消</a>
+<?php }else if($relation==2){ ?>
+ 相互关注<a href='javascript:void(0);' onclick='follow.cancel({$uid},this)'>取消</a>
+<?php }?>
+</div>
+
+<?php } ?>

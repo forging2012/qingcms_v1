@@ -1,0 +1,70 @@
+<include file="Public:header"/>
+<div><h1 class='title'>Css/Js的载入方式</h1></div>
+<div class='cssjs'>
+<h1 class='tip'>技巧提示</h1>
+<ul class='datalist'>
+<li><b>缓存模式：</b>&nbsp;&nbsp;将程序需要的Css/Js文件合并到一个缓存文件进行引用，jquery文件不合并。速度最快(网站上线后使用)，编辑、新增或删除css/js文件需要更新缓存</li>
+<li><b>普通模式：</b>&nbsp;&nbsp;分别引用需要的每个文件，文件列表缓存，速度一般(开发阶段使用)，新增或删除css/js文件需要更新缓存</li>
+<li><b>DeBug模式：</b>&nbsp;&nbsp;分别引用需要的每个文件，每次访问自动检测public、主题和插件的文件变化。速度最慢(不推荐使用)，无缓存</li>
+<li>更新模式时，相应模式的缓存会被更新，插件的安装、卸载、启用、停用，需要更新缓存</li>
+</ul>
+<form action="__URL__/doCssJs" method="post" >
+<div class="infobox">
+<input type="radio" name="type" value="cache" <?php if($linktype=='cache') echo 'checked="checked"'; ?> > 缓存模式 &nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" name="type" value="normal" <?php if($linktype=='normal') echo 'checked="checked"'; ?> > 普通模式&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" name="type" value="debug" <?php if($linktype=='debug') echo 'checked="checked"'; ?> > DeBug模式 
+</div>
+<div class="page_btn">
+<input type="submit" class="btn_input" value="更新模式">
+</div>
+</form>
+<h1 class='tip'>
+<a href="__URL__/cssJs/tab/1">[显示Css/Js文件列表]</a>
+<a href="__URL__/cssJs/tab/0">[隐藏]</a>
+</h1>
+
+<?php if($_GET['tab']){ ?>
+<div class="toolbar">将要导入的文件</div>
+<table class='tb' width="100%" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<th>Css文件</th>
+<th>Javascript文件</th>
+</tr>
+<tr>
+<td>
+<p>public/css</p>
+<ul class='ul2'>
+<volist name='csslist["public"]' id='vo'>
+<li>{$vo}</li>
+</volist>
+</ul>
+<p>core/plugin</p>
+<ul class='ul2'>
+<volist name='csslist["plugin"]' id='vo'>
+<li>{$vo}</li>
+</volist>
+</ul>
+
+
+</td>
+<td>
+<p>public/js</p>
+<ul class='ul2'>
+<volist name='jslist["public"]' id='vo'>
+<li>{$vo}</li>
+</volist>
+<p>core/plugin</p>
+<ul class='ul2'>
+<volist name='jslist["plugin"]' id='vo'>
+ <li>{$vo}</li>
+</volist>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<?php } ?>
+
+</div>
+<include file="Public:footer"/>

@@ -1,0 +1,9 @@
+.box_shadow{
+background: #FFF;
+box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2)!important; 
+border: 0!important; 
+border: 1px solid #ccc;
+/*     -webkit-box-shadow:1px 1px 1px #ccc; */
+/*     -moz-box-shadow:1px 1px 1px #ccc; */
+/*     box-shadow:0 1px 2px rgba(0, 0, 0, 0.2); */
+}

@@ -1,0 +1,16 @@
+<?php
+//普通include不能使用模板标签，只有使用thinkphp方法<include
+ if($globalInfo['ad']['right_1']){ 
+ ?>
+<!-- 广告列表 -->
+<volist name="globalInfo['ad']['right_1']" id='vo'>
+<div class='rightBox'>
+<div class='adBox-right'>
+{$vo}
+</div>
+</div>
+<div class="shadow_r"></div>
+</volist>
+<!-- 广告列表 -->
+<?php } ?>
+

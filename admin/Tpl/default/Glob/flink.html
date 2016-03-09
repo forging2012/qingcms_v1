@@ -1,0 +1,58 @@
+<include file="Public:header" />
+<div>
+	<h1 class='title'>友情链接</h1>
+</div>
+<div class='flink'>
+	<form action="__URL__/doflink" method="post">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+		    <th class='checkbox' >删除</th>
+		    <th>排序</th>
+			<th>网站名称</th>
+			<th>网站链接</td>
+			<th>文字说明(可选)</th>
+			<th>logo 地址(可选)</th>
+		</tr>
+		<volist name='list' id='vo'>
+		<tr>
+		    <input type="hidden" name="id[]" value="{$vo['id']}"/>
+		   	<td class='checkbox'><input type="checkbox" name="del[]" value="{$vo.id}"></td>
+		   	<td class='order'><input type="text" name="displayorder[]" value="{$vo['displayorder']}"></td>
+		    
+		    <td><input type="text" name="name[]" value="{$vo['name']}"></td>
+		    <td><input type="text" name="url[]" value="{$vo['url']}"></td>
+		    <td><input type="text" name="description[]" value="{$vo['description']}"></td>
+		    <td><input type="text" name="logo[]" value="{$vo['logo']}"></td>		
+		</tr>
+		</volist>	
+		<tr class='addflink'>
+		   <td></td>
+		   <td colspan="3"><a href='javascript:void(0);' onclick='addflink();return false;'>添加友情链接</a></td>
+		</tr>
+		<tr>
+		   <td></td>
+		   <td colspan="3"><input class='btn_input' type="submit" value='确定' /></td>
+		</tr>		
+	</table>
+	</form>
+	<table style='display:none;'>
+	<tbody id='addflink_block' >
+		<tr>
+		   	<td class='checkbox'>&nbsp;</td>
+		   	<td class='order'><input type="text" name="displayorder[]" ></td> 
+		    <td><input type="text" name="name[]" ></td>
+		    <td><input type="text" name="url[]" ></td>
+		    <td><input type="text" name="description[]" ></td>
+		    <td><input type="text" name="logo[]" ></td>		
+		</tr>	
+	</tbody>
+	</table>
+</div>
+<script>
+function addflink(){
+	var h=$('#addflink_block').html();
+	//alert(h);
+	$('.addflink').before(h);
+}
+</script>
+<include file="Public:footer" />

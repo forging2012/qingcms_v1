@@ -1,0 +1,10 @@
+
+<div class='smiley_box'>
+<a class="del" href="javascript:void(0)" onclick="$('.smiley_box').remove()"></a>
+<volist name='list' id='vo'>
+<a class='s' href='javascript:void(0)' code='{$vo["code"]}' title='{$vo["title"]}'><img src='__STATIC__/image/smiley/{$vo["filename"]}' /></a>
+</volist>
+</div>
+<script>
+smiley.init();
+</script>

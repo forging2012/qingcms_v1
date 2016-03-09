@@ -1,0 +1,37 @@
+<div class='space_profile'>
+
+<h3 style='height:22px;'>
+<span style='float:left;'>基本资料</span>
+<?php if($mid==$uid && $mid>0){ ?>
+<a href='{:U("User/account")}' style='float:right;'>编辑资料</a>
+<?php } ?> 
+</h3>
+<ul>
+<li><span class='span_l'>性别：</span><span class='span_r'><eq name="user['sex']" value="0">女<else/>男</eq></span></li>
+<li><span class='span_l'>地区：</span><span class='span_r'>{$user['location']['location']}</span></li>
+<li><span class='span_l'>积分：</span><span class='span_r'>{$user['score']['score']}</span></li>
+<li><span class='span_l'>金钱：</span><span class='span_r'>{$user['score']['gold']}</span></li>
+<li><span class='span_l'>等级：</span><span class='span_r'>{:W('Rank',array('score'=>$user['score']['score']))}</span></li>
+</ul>
+
+<h3>联系方式</h3>
+<ul>
+<volist name='profile' id='vo'>
+<?php if($vo['module']=='contact' && $vo['value']!='' && $vo['privacy']==1){ ?>
+<li><span class='span_l'>{$vo['name']}：</span><span class='span_r'>{$vo['value']} </span></li>
+<?php } ?>
+</volist>
+</ul>
+
+<h3>个人信息</h3>
+<ul>
+<volist name='profile' id='vo'>
+<?php if($vo['module']=='intro' && $vo['value']!='' && $vo['privacy']==1){ ?>
+<li><span class='span_l'>{$vo['name']}：</span><span class='span_r'>{$vo['value']} </span></li>
+<?php } ?>
+</volist>
+</ul>
+
+
+</div>
+<div class="shadow"></div>

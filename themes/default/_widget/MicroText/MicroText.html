@@ -1,0 +1,23 @@
+<?php if($list){ ?>
+<div class='rightBox'>
+<h3 class='title'>{$title}&nbsp;&nbsp;<b>Top10</b></h3>
+<div class='microtext'>
+<ul>
+<volist name="list" id="vo">
+<li><a target="_blank" href='{:U("Index/detail?id=".$vo["id"])}' title=" [ 推荐:{$vo['up']} 评论:{$vo['comment']} ] {$vo['ctime'|friendlyDate=###]}">{$vo['content']|getShort=###,42} </a></li>
+</volist>
+</ul>
+</div>
+</div>
+<div class="shadow_r"></div>
+<?php }else{ ?>
+<div class='rightBox'>
+<h3 class='title'>{$title}&nbsp;&nbsp;<b>Top10</b></h3>
+<div class='microtext'>
+<ul>
+<li><a href='javascript:void(0);'>暂没有热门内容</a></li>
+</ul>
+</div>
+</div>
+<div class="shadow_r"></div>
+<?php } ?>

@@ -1,0 +1,66 @@
+<include file="Public:header" />
+<div>
+	<h1 class='title'>回收站</h1>
+</div>
+<div class="toolbar">
+<a class="btn_aw"  href='__URL__/completelyDel/clear/1' onclick="if(confirm('确认要清空回收站？操作不可恢复!')){location.href=this.href;}return false;"><span>清空回收站</span></a>
+</div>
+<div class='content_list'>
+	<table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#CFCFCF"  align="center">
+		<tbody>
+
+			<tr bgcolor="#FBFCE2" height="25">
+				<td width="2%">Id</td>
+				<td width="2%">选择</td>
+				<td width="6%">用户</td>
+				<td width="6%">栏目</td>
+				<td width="40%" class="content">内容</td>
+				<td width="8%">发布时间</td>
+				<td width="4%">审核</td>
+				<td width="20%">操作</td>
+			</tr>
+            <?php if($list){ ?>
+			<volist name='list' id='vo'>
+			<tr  class='white' height="26">
+				<td>{$vo['id']}</td>
+				<td><input name="select[]" type="checkbox" value="{$vo['id']}" ></td>
+				<td><a target='_blank' href='__ROOT__/index.php?m=Space&a=index&uid={$vo["uid"]}'>{$vo['uid']|getname=###}</a></td>
+				<td>{$vo['cateid']|getCateName=###}</td>				
+				<td class="content">{$vo['content']|getShort=###,40} 
+				<php>if($vo['type']==1){ $pic=unserialize($vo['type_data']); </php>
+				<a title='查看图片' target='_blank' href="__PIC__/{$pic['path']}/s_{$pic['name']}"><img src="__STATIC__/image/pic.gif" /></a>
+				<php>}</php>
+				</td>
+				<td>{$vo['ctime']|normaltime}</td>
+				<td><?php if($vo['is_check']==1) echo '已审核'; else echo '<a href="javascript:void(0);"  onclick="check('.$vo[id].');">未审核</a>'; ?></td>
+				<td>
+				<a target='_blank' href='__ROOT__/index.php/Index/detail/id/{$vo["id"]}'>预览</a>&nbsp;
+				<a target='iframe' href="{:U('Content/editText')}&id={$vo['id']}">编辑</a>&nbsp;
+				<a href="javascript:void(0);"  onclick="move({$vo['id']});">移动</a>&nbsp;
+				<a href="javascript:void(0);"  onclick="recover({$vo['id']});">恢复</a>&nbsp;&nbsp;
+			    <a href="javascript:void(0);"  onclick="completelyDel({$vo['id']});" style='color:red;'>[彻底删除]</a>
+				</td>
+
+			</tr>
+			</volist>
+			<?php }else{ ?>
+			 <tr bgcolor="#FFF" height="25"><td colspan="8" style='text-align: center;font-size: 30px;padding:4px;color:green;'><b>回收站为空</b></td></tr>
+			<?php } ?>
+			<tr>
+			<td colspan="8" class='toolbar' style='text-align: left;'>
+   
+			<a href="javascript:void(0);" class="btn_aw" onclick="selectAll();"><span>全选</span></a>
+			<a href="javascript:void(0);" class="btn_aw" onclick="selectNo();"><span>取消</span></a>
+			<a href="javascript:void(0);" class="btn_aw" onclick="check();"><span>审核</span></a>
+			<a href="javascript:void(0);" class="btn_aw" onclick="move();"><span>移动</span></a>
+            <a href="javascript:void(0);" class="btn_aw" onclick="recover();"><span>恢复</span></a>&nbsp;&nbsp;
+            
+            
+            <a href="javascript:void(0);" class="btn_aw" onclick="completelyDel();" style='color:red;'><span>彻底删除</span></a>
+			</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<div class='marginBottom'></div>
+<include file="Public:footer" />

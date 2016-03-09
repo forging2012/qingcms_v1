@@ -1,0 +1,65 @@
+<div class='space_follow'>
+<?php
+ if(ACTION_NAME=='following'){ 
+//关注
+?>
+<?php
+ if($mid==$uid){ 
+ ?>
+<div class='group_list'>
+<div class='t'>
+<a class='a_group <?php if($groupNow=="all") echo "hover_g"; ?>'  href='{:U("Space/following?uid=$uid")}'>全部</a>
+<a class='a_group <?php if($groupNow=="no") echo "hover_g"; ?>' href='{:U("Space/following?uid=$uid&gid=0")}'>未分组</a>
+<volist name='group' id='vo'>
+<a class='groupid_{$vo["id"]}  a_group <?php if( $_GET["gid"]==$vo[id] ) echo "hover_g"; ?>' href='{:U("Space/following?uid=$mid&gid=$vo[id]")}'>{$vo['name']}</a>
+</volist>
+</div>
+<div class='b'>
+<?php if($_GET["gid"]>0){ ?>
+<a class='group_action' href='javascript:void(0);' onclick='group.edit({$_GET["gid"]});'>编辑该组</a> <span class="pipe">|</span> 
+<a class='group_action' href='javascript:void(0);' onclick='ui.confirm(this,"确认删除？该分组下的关注会被移到未分组...");'   callback='group.del({$_GET["gid"]});' >删除该组</a> <span class="pipe">|</span>
+<?php } ?>
+<a class='group_action' href='javascript:void(0);' onclick='group.add({$_GET["gid"]});'>添加分组</a>  
+</div> 
+</div>
+<?php } ?>
+<ul>
+<volist name='list' id='vo'>
+<li>
+<span class='span_l'><a href='{:U("Space/index?uid=$vo[fid]")}'>{$vo['fid']|getname=###}</a></span>
+<span class='span_c'>
+<?php if($mid==$uid){ ?>
+<a href='javascript:void(0);' onclick='group.set({$vo["fid"]});'>设置分组</a>
+<?php } ?>
+</span>
+<span class='span_r'>{:W('BtnFollow',array('uid'=>$vo['fid'],'mid'=>$mid,'Loc'=>'follow'))}</span>
+</li>
+</volist>
+</ul>
+
+<?php } ?>
+
+
+<?php
+ if(ACTION_NAME=='follower'){ 
+//粉丝
+?>
+<ul>
+<volist name='list' id='vo'>
+<li>
+<span class='span_l'><a href='{:U("Space/index?uid=$vo[uid]")}'>{$vo['uid']|getname=###}</a></span>
+<span class='span_c'>
+<?php if($mid==$uid){ ?>
+<a href='javascript:void(0);' onclick='group.set({$vo["uid"]});'>设置分组</a>
+<?php } ?>
+</span>
+<span class='span_r'>{:W('BtnFollow',array('uid'=>$vo['uid'],'mid'=>$mid))}</span>
+</li>
+</volist>
+</ul>
+
+<?php } ?>
+
+</div>
+<div class="shadow"></div>
+

@@ -1,0 +1,22 @@
+<link rel="stylesheet"  type="text/css" href="/QingCms/QingCms/Public/Css/main.css" />
+
+
+
+<div class='showCommentBox'>
+<form action="{:U('Weibo/doComment')}" method="post" onsubmit="weiboBlock.doComment(this);return false;">
+<input type='hidden' name='wid' value='{$wid}'>
+<div class='list'>
+<ul>
+<volist name='list' id='vo'>
+<li> {$vo['uid']|getSpaceLink} {$vo['content']|formatComment}</li>
+</volist>
+</ul>
+</div>
+<div class='content'><textarea class="CommentArea  area" name="content"></textarea></div>
+<div class='b'>
+<a href='javascript:void(0);' class="smiley"  onclick='smiley.show(this,"CommentArea");'>表情</a>
+<input type="submit" value="评论" class="btn">
+</div>
+</form>
+
+</div>

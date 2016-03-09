@@ -1,0 +1,77 @@
+<include file="Public:header" />
+<div>
+	<h1 class='title'>插件列表</h1>
+</div>
+<div class='tb'>
+<div class="toolbar">已安装插件</div>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+				<tr>
+				    <th width="10%">插件名称</th>
+					<th width="10%">作者</th>
+					<th width='10%'>插件目录</th>
+					<th width='10%'>版本号</th>
+					<th width='20%'>描述</th>
+					<th width='10%'>操作</th>
+					<th width='10%'>卸载</th>
+				</tr>
+
+				<volist name="yeslist" id="vo">
+				<tr> 
+				    <td <?php if(!$vo['valid']) echo "style='color:red;' title='该插件无效' "; ?>>{$vo['zhName']}</td>
+					<td>{$vo['author']}<br/><a target='_blank' href="{$vo['site']}">{$vo['site']}</a></td>
+					<td>{$vo['name']}</td>
+					<td>{$vo['version']}</td>
+					<td>{$vo['info']}</td>
+					<td>
+					<?php if($vo['status']){ ?>
+					   <a href="__URL__/stopPlugin/id/{$vo['id']}">已启用</a>	
+					<?php }else{ ?>
+					   <a style='color:red;' href="__URL__/startPlugin/id/{$vo['id']}">已停用</a> 
+					<?php } ?>
+					<?php if($vo['admin']){ ?>
+                                         &nbsp;<a href="__APP__?a=manage&m=Plugin&plugin={$vo['name']}&zhName=<?php echo urlencode($vo['zhName']); ?>">管理</a>
+					<?php } ?>
+					</td>	
+					<td><a href="__URL__/uninstallPlugin/name/{$vo['name']}">卸载</a></td>							
+				</tr>
+				</volist>
+</tbody>
+</table>
+<div class="toolbar">未安装插件</div>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+				<tr>
+				    <th width="10%">插件名称</th>
+					<th width="10%">作者</th>
+					<th width='10%'>插件目录</th>
+					<th width='10%'>版本号</th>
+					<th width='20%'>描述</th>
+					<th width='10%'>操作</th>
+					<th width='10%'>卸载</th>
+				</tr>
+
+				<volist name="nolist" id="vo">
+				<tr>
+				    <td>{$vo['zhName']}</td>
+					<td>{$vo['author']}<br/><a target='_blank' href="{$vo['site']}">{$vo['site']}</a></td>
+					<td>{$vo['name']}</td>
+					<td>{$vo['version']}</td>
+					<td>{$vo['info']}</td>
+					<td><a href="__URL__/installPlugin/name/{$vo['name']}">安装</a> </td>	
+					<td> </td>							
+				</tr>
+				</volist>
+</tbody>
+</table>
+<div class="toolbar">检测插件有效性&nbsp;&nbsp;<a href='__URL__/index/checkValid/1'>开始检测</a></div>
+<div>
+<?php if(!$msg && $_GET['checkValid']) echo "插件均有效..."; ?>
+<ul>
+<volist name='msg' id='vo'>
+<li style='padding:4px 0;'><b style='width:100px;display:inline-block;'>{$key}:</b> {$vo}</li>
+</volist>
+</ul>
+</div>
+</div>
+<include file="Public:footer" />

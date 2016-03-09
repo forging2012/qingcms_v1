@@ -1,0 +1,92 @@
+<div class="box_shadow text_list_{$t['id']}">
+<div class="author"><a class='u_space' href="{:U('Space/index?uid='.$t['uid'])}">{$t['uid']|getname=###}</a></div>
+<div class='text_content'>
+<div class="bcontent">{$t['content']}</div>
+<!-- 图片处理 -->
+<if condition="$t['type_data'] gt '' AND $t['type'] eq 1 ">
+<?php $t['pic']=unserialize($t['type_data']); ?> 
+<div class='pic'>
+<img onclick='dos.switchPic(this,"{$t.pic.path}","{$t.pic.name}","open")' src="__PIC__/{$t.pic.path}/s_{$t.pic.name}" />
+</div>
+<div class='pic_big' style='display:none'>
+<img onclick='dos.switchPic(this,0,0,"close")' src=''/>
+</div>
+</if>
+<!-- gif图处理 -->
+<if condition="$t['type_data'] gt '' AND $t['type'] eq 2 ">
+<?php $t['pic']=unserialize($t['type_data']); ?> 
+<div class='pic_big'>
+<img src="__PIC__/{$t.pic.path}/{$t.pic.name}"/>
+</div>
+</if>
+<!-- 视频处理 -->
+<if condition="$t['type_data'] gt '' AND $t['type'] eq 3 ">
+<?php $t['video']=unserialize($t['type_data']);?> 
+<div class='video_pic'>
+<if condition="$t['video']['img'] gt '' ">
+<img class='video_img' onclick='switchVideo(this,"{$t[\'video\'][\'host\']}","{$t[\'video\'][\'flashvar\']}","open")' src="{$t['video']['img']}" />
+<else/>
+<img class='video_img' onclick='switchVideo(this,"{$t[\'video\'][\'host\']}","{$t[\'video\'][\'flashvar\']}","open")' src="__STATIC__/image/noimg.png" />
+</if>
+<div class='video_play'><img onclick='switchVideo(this,"{$t[\'video\'][\'host\']}","{$t[\'video\'][\'flashvar\']}","open")' src='__STATIC__/image/videoplay.gif'></div>
+</div>
+<div class='video_show' style='display:none'>
+<div class='show_box'>
+<div class='show_nav'>
+<a class='nav_close' href='javascript:void(0);' onclick="switchVideo(this,0,0,'close');"> 收起</a>  |  
+<a class='nav_source' target='_blank' href='{$t['video']['source']}'>{$t['video']['title']}</a></div>
+<div class='show_obj'>
+</div>
+</div>
+</div>
+</if>
+
+<?php if($tag){ ?>
+<div class='tag'>
+<volist name='tag' id='vo'>
+<a target='_blank' href='__APP__/Search/?tag=<?php echo urlencode($vo["tag_id"]); ?>'>{$vo['name']}</a>
+</volist>
+</div>
+<?php } ?>
+<div class='c'></div>
+</div>
+<div class='bar'>
+<div class='bar_l'> 
+<php>if(isvoted($t['id'],$mid)>0){</php>
+<a class='isvoted barbox 
+<php>$res=isvoted($t["id"],$mid);if($res["vote"]==1){</php>
+uped
+<php>}</php>
+' href='javascript:void(0);'>{$t['up']}</a>
+<a class='isvoted barbox 
+<php>$res=isvoted($t["id"],$mid);if($res["vote"]==-1){</php>
+downed
+<php>}</php>
+' href='javascript:void(0);'>-{$t['down']}</a>
+<php>}else{</php>
+
+
+<a class='up barbox' title="赞一个" href='javascript:void(0);'  onclick='vote.add({$t["id"]},1,{$t["up"]},{$t["uid"]});return false;' id='up_{$t["id"]}'>{$t['up']}</a>
+<a class='down barbox' title="踩一个" href='javascript:void(0)' onclick='vote.add({$t["id"]},-1,{$t["down"]},{$t["uid"]});return false;' id='down_{$t["id"]}'>-{$t['down']}</a>
+
+<php>}</php>
+<span>{$t['ctime']|friendlyDate=###}</span>
+
+<?php if($mid==$t["uid"]){ ?>
+<span><a href='javascript:void(0);' callback="delText({$t['id']});" onclick="ui.confirm(this,'确定删除？');return false;" >删除</a></span>
+<?php } ?>
+</div>
+<div class='bar_r'> 
+<php>if(ACTION_NAME=='detail'){</php>
+</div>
+</div>
+{:W('Comment',array('comment'=>$comment,'mid'=>$mid))}
+<php>}else{</php>
+<a target="_blank" title="去详细页面" class='detail right' href='{:U("Index/detail?id=$t[id]")}'></a>
+<a  title="评论一下"  class='comment_bar barbox right' id='comment_{$t["id"]}' tcomment='{$t["comment"]}' tuid='{$t["uid"]}'   href='javascript:comment.show({$t["id"]},{$t["uid"]},{$t["comment"]});' >{$t["comment"]}</a>
+</div>
+</div>
+<php>}</php>
+<div id='comment_list_{$t["id"]}' class='comment_list' style='display:none;'></div>
+</div>
+<div class="shadow"></div>

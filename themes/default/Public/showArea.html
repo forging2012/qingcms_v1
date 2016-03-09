@@ -1,0 +1,35 @@
+
+<?php if(ACTION_NAME=='showArea'){ ?>
+
+<span class='span_l'>&nbsp;</span>
+<select name='province' id='area_province'>
+<option value='no' >省/直辖市</option>
+<volist name='area["province"]' id='vo'>
+<option value='{$vo["area_id"]}' <if condition="$vo['area_id'] eq $area['iprovince'] ">selected='selected'</if> > {$vo["title"]}</option>
+</volist>
+</select>
+
+<select name='city' id='area_city'>
+<option value='no'>不限</option>
+<volist name='area["city"]' id='vo'>
+<option value='{$vo["area_id"]}' <if condition="$vo['area_id'] eq $area['icity'] ">selected='selected'</if>>{$vo["title"]}</option>
+</volist>
+</select>
+<script>
+area.init();
+</script>
+
+
+<?php }else{ ?>
+<!-- getcity -->
+<select name='city' id='area_city'>
+<option value='no' selected='selected'>不限</option>
+<volist name='city' id='vo'>
+<option value='{$vo["area_id"]}' >{$vo["title"]}</option>
+</volist>
+</select>
+
+
+
+<?php } ?>
+

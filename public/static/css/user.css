@@ -1,0 +1,28 @@
+
+.usermenu {
+	padding:0;
+	padding-bottom: 10px;
+	border-top: 1px dashed #D4D4D4;
+}
+.usermenu li {
+}
+.usermenu li a{
+    display:block;
+	line-height: 30px;
+	height: 30px;
+    width:100%;
+    padding:0;
+	text-align:left;
+    text-indent: 20px;
+}
+.usermenu li a:HOVER{
+background: #eee;
+}
+.usermenu li.hover a{
+background: #ddd;
+color:#333;
+}
+
+
+
+

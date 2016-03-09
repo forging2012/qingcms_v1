@@ -1,0 +1,27 @@
+
+
+.installed{padding: 10px;}
+.installed .title{
+margin: 10px;
+font-size: 16px;
+}
+.installed .link{
+margin: 20px;
+font-size: 12px;
+}
+.installed  a{
+line-height: 14px;
+padding: 6px 20px;
+border-style: solid;
+border-width: 1px;
+border-color: #EEE #CCC #CCC #EEE;
+background: #FAFAFA;
+color: #333;
+display:inline-block;
+margin-right: 20px;
+text-decoration: none;
+}
+.installed  a:HOVER{
+background: #2E71B8;
+color: #fff;
+}

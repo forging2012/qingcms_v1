@@ -1,0 +1,60 @@
+<include file="Public:header"/>
+<div class="main_left">
+
+<div class='tab'>
+<a href='javascript:void(0);'>{$tab_name}</a>
+<div class='c'></div>
+</div>   
+
+<?php if($ac=='so'){ ?>
+<div class='search_input'>
+<form action="__ACTION__" method="get">
+<div>
+<input class='text stext' type='text' name='keyword' value='{$value}'>
+<input class='btn ssub' type='submit' onmousedown="this.className='btn_down ssub'" onmouseout="this.className='btn ssub'" value='搜索'>
+
+<if condition="$adv eq 'yes' ">
+<a style='margin-left:6px;'  href='__ACTION__?{$name}={$value}'>普通</a>
+<else/>
+<a style='margin-left:6px;'  href='__ACTION__?{$name}={$value}&adv=yes_temp'>高级</a>
+</if>
+</div>
+
+<if condition="$adv eq 'yes' ">
+<div class='highSearch'>
+<include file="Search:highSearch"/>
+</div>
+</if>
+
+</form>
+</div>
+<?php } ?>
+
+<div class='search_res'>
+<h3 style='float:left;'>
+<?php if($value==''){ ?>
+请输入关键字...
+<?php }else if($_GET['adv']=='yes_temp'){ ?>
+选择条件后点击搜索...
+<?php }else{ ?>
+共找到 “{$value}” 的相关内容 {$count}条
+<?php } ?>
+</h3>
+<div class='c'></div>
+</div>
+<div class='search_list'>
+<volist name="list" id="vo">
+{:W('Contentblock',array('mid'=>$mid,'t'=>$vo,'tag'=>getTag($vo['id'])))}
+</volist>
+{$page}
+</div>
+</div>
+<div class="main_right">
+<include file="Block:ad-right-1"/>
+{:hook('stopScrollHere')}
+<include file="Block:ad-right-2"/>
+{:hook('TagCloud')}
+</div>
+
+
+<include file="Public:footer"/>

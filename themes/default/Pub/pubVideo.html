@@ -1,0 +1,78 @@
+<include file="Public:header"/>
+<div class='main_left'>
+{:W('Tab',array('tab'=>$cate_tab,'type'=>$_GET['type'],'m'=>'Pub','a'=>pub,'noAll'=>1) )}
+<div class='Pub'>
+<h1>发布{$typeNowName}：</h1>
+<form enctype="multipart/form-data" action="__APP__/Pub/doPub" method='post' id='pubForm'>
+<div class='cate'>
+<div class='pub_l'>分类：</div>
+<div class='pub_r'>
+<select name='cate' class='select'> 
+<option selected="selected" value='0'>未分组</option>
+<volist name='cate1' id='vo'>
+<option value='{$vo["id"]}'> {$vo['name']} </option>
+<volist name='vo["cate2"]' id='vo2'>
+<option value='{$vo2["id"]}'>  &nbsp;&nbsp;&nbsp;&nbsp;{$vo2['name']}</option>
+</volist>
+</volist>
+</select>
+<span class='must'>*</span>
+</div>
+<div class='c'></div>
+</div>
+<div class='pub_length'><span class='length_span'>你还可以输入<strong id='length'>{$length}</strong>字</span></div>
+<div class='pub_content'>
+<div class='pub_l'>正文：</div>
+<div class='pub_r'>
+<textarea name='content' class='pub_area area'></textarea>
+</div>
+<div class='c'></div>
+</div>
+<div class="postTag">
+<div class='pub_l'>标签：</div>
+<div class='pub_r'>
+<input name='tags' id='tag_input' type='text' class='text'/><span class='tag_pre_list' title="标签预览"></span>
+</div>
+<div class='c'></div>
+</div>
+<div class='pic'> 
+<div class='pub_l'>图片：</div>
+<div class='pub_r'> 
+<input type="file" name="pic"  id="pub_image"/> 
+</div>
+<div class='c'></div>
+</div>
+
+
+<div style='margin: 10px 0;'>
+<div class='pub_l'>&nbsp;</div>
+<div class='pub_r'> 
+
+<input type='submit' value='发表' class='btn'  onclick="publish.ajaxSubmit();return false;"/>
+
+<!--  <input type='submit' value='发表' class='btn' >  -->
+
+</div>
+</div>
+</form>
+<div class='c'></div>
+</div>
+</div>
+
+
+<script type="text/javascript">
+var cateMust={$cateMust};
+if(!cateMust){
+	$('.must').html('');
+}
+$(document).ready(function(){
+	//alert(1111);
+	//自动检测标签合法性
+	publish.checkLen();
+    tag.check();
+});
+
+
+
+</script>
+<include file="Public:footer"/>

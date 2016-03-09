@@ -1,0 +1,11 @@
+
+.foot{
+margin-top: 10px;
+margin-bottom: 40px;
+font-size: 12px;
+padding-top: 10px;
+color: #ccc;
+text-align: center;
+border-top: 1px solid #E7E8E9;
+}
+.foot a{color: #ccc;text-decoration: none;}

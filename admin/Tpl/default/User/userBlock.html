@@ -1,0 +1,57 @@
+<include file="Public:header" />
+<div>
+	<h1 class='title'><?php if($u['email']) echo '编辑用户';else echo '添加用户'; ?></h1>
+</div>
+<div class='userblock'> 
+<form action="{:U('User/saveUser')}" method="post">
+<input type='hidden' name='uid' value='{$u["uid"]}'> 
+<ul>
+<li>
+<span class='span_l'>邮箱：</span>
+<span class='span_c'><input type='text' name='email' value='{$u["email"]}'/></span>
+<span class='span_r'>用户进行登录的帐号</span>
+</li>
+<li>
+<span class='span_l'>密码：</span>
+<span><input type='text' name='password' value='{$u["password"]}'/></span>
+<span class='span_r'><strong>(该密码是md5加密后的)</strong> 密码由数字、字母和下划线组成的6~18个字符</span>
+</li>
+<li>
+<span class='span_l'>昵称：</span>
+<span><input type='text' name='name' value='{$u["name"]}'/></span>
+<span class='span_r'>用户昵称</span>
+</li>
+<li>
+<span class='span_l'>性别：</span>
+<span>
+<label><input name="sex" type="radio" value="1"  <?php if(intval($u['sex'])==1) echo "checked='checked'"; ?> >男</label> &nbsp;&nbsp;   
+<label><input name="sex" type="radio" value="0" <?php if(intval($u['sex'])==0) echo "checked='checked'"; ?> >女</label> 
+</span>
+</li>
+
+<li>
+<span class='span_l'>积分：</span>
+<span>
+<input name="score" type="text" value='{$u["score"]}'>  
+</span>
+</li>
+
+<li>
+<span class='span_l'>是否激活：</span>
+<span>
+<label><input name="is_active" type="radio" value="1" <?php if(intval($u['is_active'])==1) echo "checked='checked'"; ?>>是</label> &nbsp;&nbsp;   
+<label><input name="is_active" type="radio" value="0" <?php if(intval($u['is_active'])==0) echo "checked='checked'"; ?>>否</label> 
+</span>
+</li>
+
+<li>
+<span class='span_l'>&nbsp;</span>
+<span>
+<input type='submit' value='确定' class='btn_input'/>
+</span>
+</li>
+
+</ul>
+</form>
+</div>
+<include file="Public:footer" />

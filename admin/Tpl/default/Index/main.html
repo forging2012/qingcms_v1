@@ -1,0 +1,42 @@
+<include file="Public:header" />
+<div>
+	<h1 class='title'>欢迎使用QingCms</h1>
+</div>
+<div class='main'>
+	<div>
+		<h3 class='title'>服务器信息</h3>
+	</div>
+	<div style='padding-left: 20px;'>
+		<table>
+			<tbody>
+				<volist name='serverInfo' id='vo'>
+				<tr>
+					<td style='text-align: right; font-weight: bold;'>{$key}</td>
+					<td>{$vo}</td>
+				</tr>
+				</volist>
+			</tbody>
+		</table>
+	</div>
+	
+	<h3 class='title'>关于QingCms</h3>
+	<div class='about'>
+	<table>
+	<tbody>
+	<tr><td class='td_l'>版权所有：</td><td>QingCms</td></tr>
+	<tr><td class='td_l'>程序作者：</td><td>xiaowang&nbsp;&nbsp;<a target='_blank' href='https://github.com/xiaowangzh'>GitHub</a>&nbsp;&nbsp;<a target='_blank' href='http://weibo.com/xiaowangzh'>新浪微博</a></td></tr>
+	<tr><td class='td_l'>程序功能：</td><td>QingCms,轻内容管理系统！轻松打造类糗事百科、快乐麻花的网站...</td></tr>
+	<tr><td class='td_l'>免责声明：</td><td>QingCms由个人编写，只做学习交流之用，对使用QingCms所带来损失我们不做承担</td></tr>
+
+	</tbody>
+	</table>
+	</div>
+
+	<div>
+		<h3 class='title'>友情链接</h3>
+	</div>
+	<div>
+		<volist name='link' id='vo'> <a target='_blank' style='margin-right: 10px;'	href='{$vo}'>{$key}</a> </volist>
+	</div>
+</div>
+<include file="Public:footer" />

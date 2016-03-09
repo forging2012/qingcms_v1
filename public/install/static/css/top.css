@@ -1,0 +1,32 @@
+
+.top{
+overflow: hidden;
+margin: 0px auto;
+background: #fff;
+border-bottom: 1px solid #D8DCE5;
+}
+.logo{
+line-height:52px;
+padding: 4px 0;
+font-size: 28px;
+font-weight: normal;
+color: #666;
+width: 300px;
+float: left;
+text-decoration: none;
+}
+.top-r{
+margin-left: 320px;
+text-align: right;
+height: 62px;
+}
+.top-link{padding:4px 10px 0 0;font-size: 12px; }
+.top-link a{color:#666;text-decoration: none;margin-right: 8px; }
+.top-version{
+color: #eee;
+font-size: 26px;
+font-style: italic;
+cursor: default;
+padding-right:20px;
+padding-top: 4px;
+}

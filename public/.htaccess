@@ -1,0 +1,47 @@
+# 将 RewriteEngine 模式打开
+
+RewriteEngine On
+
+# 修改以下语句中的 /qingcms 为您的目录地址，如果程序放在根目录中，请将 /qingcms 修改为 /
+RewriteBase /qingcms_demo/public
+#RewriteBase /
+
+#301
+RewriteCond %{HTTP_HOST} ^qingcms.com [NC]
+RewriteRule ^(.*)$ http://www.qingcms.com/$1 [L,R=301]
+
+RewriteCond %{HTTP_HOST} ^qingcmsxiaowang.gotoip55.com [NC]
+RewriteRule ^(.*)$ http://www.qingcms.com/$1 [L,R=301]
+
+#详细页
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^detail-([0-9]+)\.html$ index.php?a=detail&m=Index&id=$1
+#详细页 分页
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^detail-([0-9]+)-([0-9]*)\.html$ index.php?a=detail&m=Index&id=$1&p=$2
+
+#内容列表
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^([a-zA-Z0-9]*)\/order\/([a-zA-Z]*)$ index.php?m=Index&a=$1&order=$2
+
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^([a-zA-Z0-9]*)\.html$ index.php?m=Index&a=$1
+#内容列表 分页
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^([a-zA-Z0-9]*)-([0-9]*)\.html$ index.php?m=Index&a=$1&p=$2
+
+#用户空间
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^space-uid-([0-9]*)\.html$ index.php?m=Space&a=index&uid=$1
+
+#用户空间分页
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^space-uid-([0-9]*)-([0-9]*)\.html$ index.php?m=Space&a=index&uid=$1&p=$2
+
+#.git/.svn|禁止访问403|测试
+RewriteCond %{QUERY_STRING} ^(.*)$
+#RewriteRule ^(.*)(\.git|\.svn)(.*)$ htaccess.php?a1=$1&a2=$2&a3=$3
+#RewriteRule ^(.*)(\.git|\.svn)(.*)$ - [F,L]
+RewriteRule ^(\.git|\.svn) - [F,L]
+
+ErrorDocument 404 /404.htm

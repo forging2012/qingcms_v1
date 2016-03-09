@@ -1,0 +1,62 @@
+<include file="Public:header_space"/>
+<div class='home'>
+<div class='home_l'>
+<include file="Home:userbar"/>
+</div>
+<div class='home_cr'>
+<div class='home_c'>
+
+</if>
+<if condition="ACTION_NAME eq 'index' ">
+<include file="Block:weiboBox"/>
+
+<include file="Home:tab"/>
+<div class='group_nav'>
+<a href='{:U("Home/$action?ac=following")}' class='a_group <?php if($g=="all") echo "hover"; ?>'  >全部</a>
+<a href='{:U("Home/$action?ac=following&gid=0")}' class='a_group <?php if($g=="no") echo "hover"; ?>' >未分组</a>
+<volist name="glist" id="vo">
+<a href='{:U("Home/$action?ac=following&gid=$vo[id]")}' class='a_group <?php if($g==$vo[id]) echo "hover"; ?>' >{$vo['name']}</a>
+</volist>
+</div>
+
+<div class='WeiboBox'>
+<volist name="list" id="vo">
+{:W('Weibo',array('mid'=>$mid,'weibo'=>$vo))}
+</volist>
+</div>
+<div class='loadMoreDiv'>
+<a id="loadMore" href="javascript:void(0)" onclick='loadmore.load();' lastId={$lastId} ><span class="ico_loadmore"></span>更多</a>
+</div>
+<script>	
+//loadmore.init();
+</script>
+</if>
+
+
+
+<if condition="ACTION_NAME neq 'index' ">
+<include file="Home:tab"/>
+</if>
+
+<if condition="ACTION_NAME eq 'comment' ">
+<include file="Home:comment"/>
+</if>
+
+<if condition="ACTION_NAME eq 'message' ">
+<include file="Home:message"/>
+</if>
+
+<if condition="ACTION_NAME eq 'account' ">
+<include file="Home:account"/>
+</if>
+
+
+</div>
+<div class='home_r'>
+<include file="Home:home_r"/>
+</div>
+<div class='c'></div>
+</div>
+<div class='c'></div>
+</div>
+<include file="Public:footer"/>

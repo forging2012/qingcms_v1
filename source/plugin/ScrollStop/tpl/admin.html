@@ -1,0 +1,36 @@
+<div>
+<script type="text/javascript" src="{$Tpl}/admin.js"></script>
+<form method="post" action="{:Plugins::adminUrl()}">
+<ul class='line'>
+<volist name='list' id='vo'>
+<li> 
+<span class="span_l"><input type="checkbox" name="del[]" value="{$key}" title='选中则删除'>&nbsp;&nbsp;<input type="text" name='name[{$key}]' size='8' value='{$vo["name"]}'></span>
+<span class="span_r"><input type="text" name='url[{$key}]' value='{$vo["url"]}'></span>
+</li>
+</volist>
+<li class='add_here'> 
+<span class="span_l"><a href='javascript:void(0);' onclick="add();">添加新帐号</a></span>
+<span class="span_r">&nbsp;</span>
+</li>
+</ul>
+<div class="page_btn">
+      <input type="submit" class="btn_input" value="确定">
+</div>
+</form>  
+<ul class='temp_li' style='display:none;'>
+<li> 
+<span class="span_l">&nbsp;&nbsp;<input type="text" name='name[]' size='10' value=''></span>
+<span class="span_r"><input type="text" name='url[]' value=''></span>
+</li>
+</ul>
+<script type="text/javascript">
+function add(){
+	var obj=$('.temp_li');
+	var html=obj.html();
+	$('.add_here').before(html);
+}
+</script>
+</div>
+
+
+

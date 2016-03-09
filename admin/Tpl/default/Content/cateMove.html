@@ -1,0 +1,38 @@
+<include file="Public:header" />
+<div>
+	<h1 class='title'>栏目管理</h1>
+</div>
+<div class="toolbar">
+移动到新栏目(说明：只能移动到顶级栏目下或变更为顶级栏目)
+</div>
+<div class='content_list'>
+<div class='move'>
+<form action="__ACTION__" method="get">
+<input type='hidden' name='ids' value='{$ids}'/>
+<div> 把栏目<strong>({$names})</strong>移动到：</div>
+<div>
+<select name='cate' class='select'> 
+<option selected="selected" value='0'>移到到顶级栏目</option>
+
+<volist name='cate1' id='vo'>
+<option value='{$vo["id"]}'> {$vo['name']} </option>
+</volist>
+</select>
+</div>
+<div> 
+<a href="javascript:void(0);" class="btn_aw" onclick="sub();"><span>确定</span></a>
+<a href="javascript:history.back();" class="btn_aw"><span>返回</span></a>
+</div>
+</form>
+</div>
+</div>
+<script>
+function sub(){
+	if($('select').val()=='0'){
+		if(!confirm('移动到顶级栏目？'))
+		return false;
+	}
+	$('form').submit();
+}
+</script>
+<include file="Public:footer"/>

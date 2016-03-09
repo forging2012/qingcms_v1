@@ -1,0 +1,17 @@
+a.top_stick{
+	background-color:#ccc;
+	background-image:url({CSSDIR}/backtop.png);
+	background-position:center center;
+	background-repeat: no-repeat;
+	padding:4px;
+	color: white;
+	display: inline-block;
+	font-size: 0;
+	height: 36px;
+	line-height: 3px;
+	text-decoration: none;
+	width: 36px;
+}
+a.top_stick:hover{
+	background-color:#333;
+}

@@ -1,0 +1,9 @@
+
+.pop_setGroup{padding:10px;background: #fff;width: 322px;font-size: 12px;}
+.pop_setGroup .label{width:100px; display:inline-block;line-height: 25px;}
+.pop_setGroup input{
+vertical-align: middle;
+margin: -2px 0 0 0;
+}
+.pop_setGroup .b{margin-top: 10px;text-align: center;}
+.pop_setGroup .list{border: 1px solid #eee;padding:8px 10px; }

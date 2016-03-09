@@ -1,0 +1,82 @@
+<include file="Public:header" />
+<div>
+	<h1 class='title'>文档管理</h1>
+</div>
+<script type='text/javascript'>
+function toUrl(obj){
+	 var url=$(obj).attr('href');
+	 var value=$(obj).prev('input').val();
+	 location.href=url+value;
+}
+
+
+</script>
+<div class="toolbar">
+<a href='__ACTION__'>文档列表</a> >>{$cate}   &nbsp;&nbsp;&nbsp;&nbsp;
+用户ID:<input type='text' name='uid' size='6'/>
+<a href="__ACTION__/uid/" onclick="toUrl(this);return false;">确定</a>
+&nbsp;&nbsp;
+栏目ID:<input type='text' name='cid' size='6'/>
+<a href="__ACTION__/cid/" onclick="toUrl(this);return false;">确定</a>
+&nbsp;&nbsp;
+文章ID:<input type='text' name='tid' size='6'/>
+<a href="__ACTION__/tid/" onclick="toUrl(this);return false;">确定</a>
+</div>
+<div class='content_list'>
+	<table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#CFCFCF"  align="center">
+		<tbody>
+
+			<tr bgcolor="#FBFCE2" height="25">
+				<td width="2%">Id</td>
+				<td width="2%">选择</td>
+				<td width="6%">用户</td>
+				<td width="6%">栏目</td>
+				<td width="40%" class="content">内容</td>
+				<td width="8%">发布时间</td>
+				<td width="4%">审核</td>
+				<td width="10%">操作</td>
+			</tr>
+
+			<volist name='list' id='vo'>
+			<tr  class='white' height="26">
+				<td>{$vo['id']}</td>
+				<td><input name="select[]" type="checkbox" value="{$vo['id']}" ></td>
+				<td><a title='只看该用户的文档' href='__ACTION__/uid/{$vo["uid"]}'>{$vo['uid']|getname=###}</a></td>
+				<td><a title='只看该栏目的文档' href='__ACTION__/cid/{$vo["cateid"]}'>{$vo['cateid']|getCateName=###}</a></td>				
+				<td class="content">{$vo['content']|getShort=###,40} 
+				<php>if($vo['type']==1){ $pic=unserialize($vo['type_data']); </php>
+				<a title='查看图片' target='_blank' href="__PIC__/{$pic['path']}/s_{$pic['name']}"><img src="__STATIC__/image/pic.gif" /></a>
+				<php>}</php>
+				</td>
+				<td>{$vo['ctime']|normaltime}</td>
+				<td><?php if($vo['is_check']==1) echo '已审核'; else echo '<a href="javascript:void(0);"  onclick="check('.$vo[id].');">未审核</a>'; ?></td>
+				<td>
+				<a target='_blank' href='__ROOT__/index.php/Index/detail/id/{$vo["id"]}'>预览</a>
+				<a target='iframe' href="{:U('Content/editText')}&id={$vo['id']}">编辑</a>
+				<a href="javascript:void(0);"  onclick="move({$vo['id']});">移动</a>
+				<a href="javascript:void(0);"  onclick="del({$vo['id']});">删除</a>
+				</td>
+
+			</tr>
+			</volist>
+			<tr>
+			<td colspan="8" class='toolbar' style='text-align: left;'>
+   
+			<a href="javascript:void(0);" class="btn_aw" onclick="selectAll();"><span>全选</span></a>
+			<a href="javascript:void(0);" class="btn_aw" onclick="selectNo();"><span>取消</span></a>
+			<a href="javascript:void(0);" class="btn_aw" onclick="check();"><span>审核</span></a>
+			<a href="javascript:void(0);" class="btn_aw" onclick="move();"><span>移动</span></a>
+			<a href="javascript:void(0);" class="btn_aw" onclick="del();"><span>删除</span></a>
+
+			</td>
+			</tr>
+			<tr class='white' height="26">
+				<td colspan="8">
+					<div>{$page}</div>
+				</td>
+			</tr>
+
+		</tbody>
+	</table>
+</div>
+<include file="Public:footer" />

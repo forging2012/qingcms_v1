@@ -1,0 +1,12 @@
+
+<div class='ForwardingBox'>
+<form action="{:U('Weibo/doForward')}" method="post" onsubmit="weiboBlock.doForwarding(this);return false;">
+<input type='hidden' name='wid' value='{$wid}'>
+
+<div class='ing'>您将转播 <a href='{:U("Space/index?uid=$one[uid]")}'>{$one['uid']|getname=###}:</a>{$one['content']|formatWeibo=###}</div>
+<div class='content'><textarea class="ForwardingArea  area" name="content"></textarea></div>
+<div class='b'>
+<a href='javascript:void(0);' class="smiley"  onclick='smiley.show(this,"ForwardingArea");'>表情</a>
+<input type="submit" value="转发" class="btn"></div>
+</form>
+</div>

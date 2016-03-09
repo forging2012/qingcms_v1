@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>QingCms管理后台</title>
+<script type="text/javascript" src="__STATIC__/js/jquery/jquery-1.7.2.min.js"></script>
+<link rel="stylesheet"  type="text/css" href="__STATIC__/admin/css.css" />
+
+<script type="text/javascript">
+<!--
+	var	URL		=	'__URL__';
+	var	APP		=	'__APP__';
+	var	PUBLIC	=	'__STATIC__';
+	var STATIC  =   '__STATIC__';
+	var	ROOT	=	'__ROOT__';
+//-->
+</script>
+</head>
+<body>
+<div class="header">
+<div class='logo'><a href="__APP__">QingCms</a></div>
+<div class='tab'>
+<ul>
+<li tab='index' class='tab_hover'><a href='__APP__/Index/main'  target='iframe'>首页</a></li>
+<li tab='glob'><a href='__APP__/Glob/siteInfo' target='iframe'>全局</a></li>
+<li tab='content'><a href='__APP__/Content/cate' target='iframe'>内容</a></li>
+<li tab='user'><a href='__APP__/User/userManager' target='iframe'>用户</a></li>
+<li tab='tools'><a href='__APP__/Tools/updateCache' target='iframe'>工具</a></li>
+<li tab='plugin'><a href='__APP__/Plugin' target='iframe'>插件</a></li>
+</ul>
+</div>
+<div class='adminuser'>
+<a class='reFresh' href='javascript:void(0);' onclick='refresh();'> 刷新</a>
+<a class='back' href='javascript:history.back();' onclick='refresh();'> 返回</a>
+<span>您好：{$mname} , 欢迎使用QingCms! </span>  |
+<a target='iframe' href='__ROOT__/admin.php/Admin/passwd'>修改密码</a>  |
+<a target='_blank' href='__ROOT__/index.php'>返回前台</a>  |
+<a target='_self'  href='__APP__/Public/logout'>退出</a>
+</div>
+</div>
+<div class="main">
+<div class="main_left">
+<include file="menu"/>
+</div>
+<div class='main_right'>
+<iframe src="__APP__/Index/main" id='iframe' name='iframe'  frameborder='0' width='100%' scrolling='auto'></iframe>
+</div>
+</div>
+<div class="index_footer">
+</div>
+<script>
+$(document).ready(function(){
+	//根据文档（窗口）大小，给高
+	$('.main_left').css('height',jQuery(document).height()-36);
+	$('#iframe').attr('height',jQuery(document).height()-36);
+
+	//顶部菜单动作
+	var tabname='';
+	$('.tab').find('li').click(function(){
+		$('.tab').find('li').removeClass('tab_hover');
+		$(this).addClass('tab_hover');		
+		
+	    tabname=$(this).attr('tab');
+	    var def=$(this).attr('def');
+		$('.menu').removeClass('menu_hover').find('li').removeClass('menu_li_hover');	
+		$('.'+tabname).addClass('menu_hover').find('li.def').addClass('menu_li_hover');
+	});
+	 //左边菜单动作
+	$('.menu').find('li').click(function(){
+		$('.menu').find('li').removeClass('menu_li_hover');
+		$(this).addClass('menu_li_hover');	
+		var isrc=$(this).find('a').attr('href');
+		$('#iframe').attr('src',isrc);
+		return false;
+	});
+
+});
+function refresh(){
+  parent.iframe.location.reload();
+}
+
+
+</script>
+</body>
+</html>

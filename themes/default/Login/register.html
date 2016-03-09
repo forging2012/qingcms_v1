@@ -1,0 +1,186 @@
+<include file="Public:header"/>
+<div class='main_left'>
+<div class='register'>
+<h1>注册帐号：</h1>
+<form action="{:U('Login/doReg')}" method="post" right=0; onsubmit="reg.submit(this);return false;">
+<ul>
+<li>
+<div class='reg_li_1'>登录邮箱：<em>*</em></div>
+<div class='reg_li_2' style='position:relative;'>
+<input type="text"  style="width:250px;" value="" name="email"  autocomplete="off" msg="请填有效邮箱地址，以完成注册">
+<div class='emailmore' style='display:none;'></div>
+</div>
+<div class='reg_li_3'></div>
+</li>
+
+<li>
+<div class='reg_li_1'>站内昵称：<em>*</em></div>
+<div class='reg_li_2'><input type="text"  style="width:250px;" value="" name="name"  msg="请填写用户名"></div>
+<div class='reg_li_3'></div>
+</li>
+
+<li>
+<div class='reg_li_1'>登录密码：<em>*</em></div>
+<div class='reg_li_2'><input type="password"  style="width:250px;" value="" name="password"  msg="密码由6-18个字符组成"></div>
+<div class='reg_li_3'></div>
+</li>
+
+<li>
+<div class='reg_li_1'>确认密码：<em>*</em></div>
+<div class='reg_li_2'><input type="password" style="width:250px;" value="" name="repassword"  msg="密码由6-18个字符组成" ></div>
+<div class='reg_li_3'></div>
+</li>
+
+<li>
+<div class='reg_li_1'>验证码：<em>*</em></div>
+<div class='reg_li_2'>
+<input type="text"  style="width:150px;" value="" name="verify"  msg="请填写正确的验证码"> 
+<img title='点击切换验证码' src="__URL__/verify" onclick='var url="__URL__/verify";this.src=url+"/"+Math.random();'>
+</div>
+<div class='reg_li_3'></div>
+</li>
+
+<li>
+<div class='reg_li_1'>&nbsp;</div>
+<div class='reg_li_2'><input class='btn_input' type="submit"   value="注册" ></div>
+</li>
+
+</ul>
+</form>
+<div class="c"></div>
+</div>
+</div>
+<div class='main_right'>
+<div style='padding:10px 0 0 20px;line-height: 32px;'>
+<p>已有帐号？请直接登录</p>
+<p><a href="{:U('Login/login')}" class="btn_a">登录</a></p>
+</div>
+</div>
+<script>
+var reg={
+	init:function(){ 
+		$(document).ready(function(){
+			reg.emailTip();
+			reg.check();
+		});
+	},
+	//验证
+	check:function(){
+		$('.register input').live('blur keyup',function(){
+			var val=$(this).val();
+			var msg=$(this).attr('msg');
+			var name=$(this).attr('name');
+			var successHtml='<span class="ico_success"></span>';
+			var errorHtml='<span class="ico_error"></span>';
+			var obj3=$(this).parent('.reg_li_2').next('.reg_li_3');
+			//不能为空
+			if(val==''){
+				obj3.html(errorHtml+msg);
+				return false;
+			}
+			//email	
+			if(name=='email'){
+				if(!(val.match(/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/))){
+					obj3.html(errorHtml+'邮箱格式错误');
+					return false;
+				}else{
+					obj3.html(successHtml);
+				}
+			}
+			//密码	  	
+			if(name=='password' || name=='repassword'){
+				if(name=='repassword'){
+					if(val!=$('input[name="password"]').val()){
+					 obj3.html(errorHtml+'两次密码不一致');
+					 return false;					
+					}
+				}
+				if(val.length<6 || val.length>18){
+					obj3.html(errorHtml+'密码长度出错,6-18位');
+					return false;	
+				}
+				if(!(val.match(/^\w+$/))){
+					obj3.html(errorHtml+'密码只能包含字母、数字、下划线');
+					return false;
+				}
+				obj3.html(successHtml);
+		   }
+			//名称
+			if(name=='name'){
+				if(val.length<2 || val.length>10){
+					obj3.html(errorHtml+'名称2~10个字符');
+					return false;
+				}
+				obj3.html(successHtml);
+			}
+	       //验证码
+	       if(name=='verify'){
+				obj3.html(successHtml);
+			}
+
+		});
+	},	
+	//提交
+	submit:function(obj){
+		var c;
+		var error=0;
+		$('.register input').each(function(){
+			if($(this).val()==''){
+				error++;
+				return false;
+			}
+		});
+        if(error>0){
+			ui.error('请完善信息再提交');
+            return false;
+        }
+        $('.register .reg_li_3').each(function(){
+        	 c=$(this).find('span').attr('class');
+             if(c=='ico_error'){
+            	error++;
+     			return false;
+             }      
+        });
+        if(error>0){
+			ui.error('请完善信息再提交');
+            return false;
+        } 
+       $(obj).submit();
+	},
+	//邮箱提示
+	emailTip:function(){
+		$('input[name="email"]').live('keyup focus',function(){
+			//如果没包含@才进行提醒
+			var v=$(this).val();
+			if(!v.match('@')){
+				var html=reg.emailmore(v);			
+				$('.emailmore').html(html).show();
+			}
+		});
+		$('.em_li').live('mouseover',function(){ $(this).css('background-color','#EEE'); });
+		$('.em_li').live('mouseout',function(){ $(this).css('background-color','#FFE'); });
+		$('.em_li').live('click',function(){  
+			var v=$(this).html();
+			$('input[name="email"]').val(v).blur();//触发blur事件		
+		});
+
+		$('input[name="email"]').blur(function(){
+			$('.emailmore').fadeOut('normal'); 	 		
+		});	
+	},
+	emailmore:function(txt){
+		var html="<ul>";
+		    html+="<li class='em_li' >"+txt+"@qq.com</li>";
+		    html+="<li class='em_li'>"+txt+"@163.com</li>";
+		    html+="<li class='em_li'>"+txt+"@sina.com</li>";
+		    html+="<li class='em_li'>"+txt+"@gmail.com</li>";
+		    html+="<li class='em_li'>"+txt+"@hotmail.com</li>";
+		    html+="</ul>";
+	    return html;	
+	}
+	  
+}
+reg.init();
+
+</script>
+<include file="Public:footer"/>

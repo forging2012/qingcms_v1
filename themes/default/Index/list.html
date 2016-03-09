@@ -1,0 +1,39 @@
+<include file="Public:header"/>
+<div class="main_left">
+{:W('Tab',array('tab'=>$typeTab,'type'=>$typeNow,'m'=>'Index','a'=>ACTION_NAME) )}
+<volist name="list" id="vo">
+{:W('Contentblock',array('mid'=>$mid,'t'=>$vo,'tag'=>getTag($vo['id'])))}
+</volist>
+{$page}
+</div>
+<div class='main_right'>
+<if condition="$cate2[0] gt '' ">
+<div class='rightBox'>
+<h3 class='title'>{:W('Location',array('LocTop'=>$LocTop,'Loc2'=>$Loc2) )}</h3>
+<div class='cate2'>
+<ul>
+<volist name='cate2' id='vo'>
+<li><a href='{:U("Index/".$vo["nid"])}' <if condition="$vo['nid'] eq $Loc2['nid']">class='hover'</if> > {$vo['name']}</a></li>
+</volist>
+</ul>
+<div class='c'></div>
+</div>
+</div>
+<div class="shadow_r"></div>
+</if>
+<div class='rightBox'>
+<div class='searchBox'>
+<form action="__APP__/Search" method="get" target='_blank'>
+<input type='text' class='text' name='keyword'><input type='submit' class='btn_search' value='搜索'>
+</form>
+</div>
+</div>
+<div class="shadow_r"></div>
+<include file="Block:ad-right-1"/>
+{:W('MicroText',array('list'=>$topList,'title'=>$topTitle))}
+{:hook('TagCloud')}
+{:hook('stopScrollHere')}
+<include file="Block:ad-right-2"/>
+{:hook('followBlock')}
+</div>
+<include file="Public:footer"/>

@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>关于我们-QingCms轻内容管理系统</title>
+<link rel="stylesheet"  type="text/css" href="./static/about.css" />
+<meta name="keywords" content="轻cms,轻内容管理系统,清新网站,php开源程序,搞笑，微小说，轻资讯" />
+<meta name="description" content="QingCms-轻内容管理系统，以微小说，笑话，短文资讯等类微博轻文本或图片为主要内容，可以帮助你轻松的打造清新休闲网站，系统构架健壮、灵活" />
+</head>
+<body onload="to();">
+<div class='toper'>
+<div class='block'> 
+<div class="qingcms_logo"><a href="http://www.QingCms.com/" title="QingCms">QingCms</a></div>
+</div>
+</div>
+<div class='main block'>
+<div class='main_l box_shadow'>
+<h3>网站介绍</h3>
+<ul>
+<li class='li_index'><a href=".">首页</a></li>
+<li><a href="./about.htm#1" name='name1' onclick='to(1);' class='hover'>关于本站</a></li>
+<li><a href="./about.htm#2" name='name2' onclick='to(2);'>发展历程</a></li>
+<li><a href="./about.htm#3" name='name3' onclick='to(3);'>联系我们</a></li>
+</ul>
+</div>
+<div class='main_r box_shadow'>
+<div id='item1' style='display:none;'>
+<h3 class='title'>关于QingCms</h3>
+<p>QingCms-轻内容管理系统，以微小说，笑话，短文资讯等类微博轻文本或图片为主要内容，致力于打造清新休闲网站...</p>
+<h3 class='title'>QingCms的网址</h3>
+<p class='domain'>www.QingCms.com</p>
+<p>如果你和我们一样喜欢QingCms，请把它也分享给你的朋友吧^_^</p>
+</div>
+<div  id='item2' style='display:none;'>
+<h3 class='title'>发展历程</h3>
+<p>QingCms于2012年秋上线测试...</p>
+</div>
+<div  id='item3' style='display:none;'>
+<h3 class='title'>联系我们</h3>
+<p>QQ交流群：152654500(主群)&nbsp;&nbsp;&nbsp;286848563</p>
+<p>官方微博：<a target='_blank' href='http://weibo.com/qingcmscom'>http://weibo.com/qingcmscom</a>&nbsp;&nbsp;&nbsp;微群：<a target='_blank' href='http://q.weibo.com/821677'>http://q.weibo.com/821677</a></p>
+<p>旗下网站：<a target='_blank' href='http://www.logo234.com/'>Logo之家</a>&nbsp;&nbsp;&nbsp;<a target='_blank' href='http://www.dev234.com/'>开发者日记</a></p>
+</div>    
+    
+</div>
+</div>
+<div class='footer block'>
+ © copyright  QingCms.com All Rights Reserved
+</div>
+<script type="text/javascript">
+/**
+ * url地址不变，只改变瞄点，网页不重载
+ * 不同瞄点的内容，已经全部被载入了
+ * 该javascript代码也只会执行一次(页面载入时)
+ * 监听某元素的点击事件
+ */
+ function to(id,obj){
+        if(!id){
+          var anchor=location.hash;   
+	  anchor=anchor.slice(1)
+        }else{
+             var anchor=id;     
+        }
+      if(anchor){	
+             var len=document.anchors.length; if(anchor>len) anchor=len;
+              //取消聚焦
+              //因为一个文档中的 name 属性可能不唯一，所有 getElementsByName() 方法返回的是元素的数组，而不是一个元素。
+              for(var j=1;j<=len;j++){
+		     if(anchor==j) continue; 
+                     var obj_nav_2=document.getElementsByName('name'+j);
+		     obj_nav_2[0].className='';
+		 }
+                //聚焦选中的元素
+                var obj_nav=document.getElementsByName('name'+anchor); //alert(obj_nav[0].className);
+                obj_nav[0].className='hover';  	 
+             
+              //把选中的显示
+               var obj=document.getElementById('item'+anchor);
+              obj.style.display='block';
+              //其他隐藏
+		 for(var i=1;i<=len;i++){
+			 if(anchor==i) continue;
+			 document.getElementById('item'+i).style.display='none';
+		 }
+
+	 }else{
+         var obj=document.getElementById('item1');
+         obj.style.display='block'; 
+	 }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<div class='tab'>
+<php>if(!$noAll){</php>
+<a href='{:U($m."/".$a)}' <if condition="$type eq '' OR  $type eq 'all'">class='hover'</if>>全部</a>
+<php>}</php>
+<volist name='tab' id='vo'>
+<php>if($key==$type){</php>
+<a href='javascript:void(0);' class="hover">{$vo}</a>
+<php>}else{</php>
+<a href='{:U($m."/".$a."?type=".$key)}' class=" ">{$vo}</a>
+<php>}</php>
+</volist>
+<div class='c'></div>
+</div>    

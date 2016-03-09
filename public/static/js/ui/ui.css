@@ -1,0 +1,104 @@
+.ui_success_box {
+	border: 5px solid #6B6D6B;
+	color: #1B9103;
+	position: absolute;
+	z-index: 999;
+	background: white url(./ui_box.gif) repeat-x 0 0;
+	padding: 0 25px 0 68px;
+	margin-top: 1px;
+	float: left;
+	opacity: 0.8;
+}
+
+.ui_error_box {
+	background-position: 0 bottom;
+}
+
+#ui_messagecontent {
+	font-size: 14px;
+	padding: 20px 0;
+	font-weight: bold;
+}
+
+.box_bg {
+	position: absolute;
+	background-color: black;
+	left: 0;
+	top: 0;
+}
+
+#qc_ui_confirm {
+	position: absolute;
+	z-index: 100;
+	background: #fff;
+	border: #666 solid 1px;
+	border-radius: 3px;
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+	padding: 20px;
+	width: 164px;
+	margin-top: 22px;
+}
+
+a.del {
+	position: absolute;
+	top: 2px;
+	right: 0;
+	width: 17px;
+	height: 17px;
+	background-image: url(../../image/close.gif);
+	background-position: 0 -85px;
+	overflow: hidden;
+	margin: 3px 5px 0 0;
+}
+
+a.del:HOVER {
+	background-position: 0 -102px;
+}
+
+#qc_ui_confirm .button input {
+	margin-right: 10px;
+}
+
+#qc_ui_confirm .txt {
+	margin-bottom: 4px;
+	color: #333;
+}
+
+/*-----------引用图片说明，相对路径出错，Diallog 文件夹易出错 ../../image/close.gif -------------*/
+
+/*----------load-----------*/
+.ui_load {
+	position: absolute;
+	background: #fff;
+	border: 8px solid #999;
+	border-radius: 3px;
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.ui_load .title {
+	padding: 6px 30px 6px 10px;
+	background: #666;
+	color: #fff;
+}
+
+.ui_load .title h3 {
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.ui_loading {
+	background: url(../../image/loading_o.gif) no-repeat center;
+	display: inline-block;
+	height: 32px;
+	line-height: 32px;
+	min-width: 150px;
+	margin: 20px 0;
+}
+
+.dd {
+	height: 32px;
+	line-height: 32px;
+	display: inline-block;
+	padding-left: 40px;
+	margin-top: 20px;
+}

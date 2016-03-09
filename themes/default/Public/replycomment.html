@@ -1,0 +1,9 @@
+<div class='replycomment'>
+<div class='reply_for'><strong>{$comment['uid']|getname=###}</strong>：<span>{$comment['content']|getShort=###,46,'...'}</span>
+</div>
+<form action="__APP__/Public/doreply" method="post" id='repley_comment_form'>
+<input type="hidden" name='r_reply_comment_id' value='{$comment["id"]}' />
+<div> <textarea class="area"   name="r_content"></textarea></div>
+<div class='sub'><input type="submit" value='回复' class='btn' onclick='comment.doreply("{$type}");return false;'></div>
+</form>
+</div>

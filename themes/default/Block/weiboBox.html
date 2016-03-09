@@ -1,0 +1,22 @@
+<div class='weiboBox'> 
+<form enctype="multipart/form-data" action='{:U("Weibo/WeiboPub")}' method="post" id='weiboForm' onsubmit="weibo.ajaxSubmit(this);return false;">
+<div class='weibo_t'>
+<span class='t_len'>你还可以输入<strong id="length">140</strong>字</span>
+</div>
+<div class='weibo_c'>
+<textarea class='area weibo_area' name='content'></textarea>
+<input class='weibo_sub' type='submit' value='' />
+</div>
+<div class='weibo_b'>
+<div class='weibo_type'>
+<a href='javascript:void(0);' class='smiley' >表情</a>
+<a href='javascript:void(0);' class='pic' title='点这里选择图片...'>图片</a>
+<input type='file' name='pic' class='file_input'>
+</div>
+
+</div>
+</form>
+<script type="text/javascript"> 
+weibo.init();
+</script>
+</div>

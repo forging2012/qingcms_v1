@@ -1,0 +1,133 @@
+*{margin: 0;padding: 0;}
+body {
+font-family: "Microsoft Yahei", "微软雅黑", Tahoma, Arial, Helvetica, STHeiti;
+font-size: 14px;
+color: #000;
+background: url(./image/body.png) repeat;
+}
+a{text-decoration: none;color: #666;}
+ul,li{list-style: none;}
+.box_shadow {
+background: #FFF;
+box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2)!important;
+border: 0!important;
+border: 1px solid #ccc;
+}
+p{text-indent:20px;padding: 10px 0; }
+.title{
+height: 20px;
+text-align: left;
+padding: 8px 20px;
+}
+.domain{font-size: 20px;font-weight: bold;text-align: center;padding: 20px 0;color: #333;}
+
+.toper{
+padding: 0;
+background: #333;
+border-bottom: 1px solid #000;
+width: 100%;
+height: 41px;
+}
+.qingcms_logo {
+width: 143px;
+display: inline;
+}
+.qingcms_logo a {
+display: block;
+width: 143px;
+height: 39px;
+line-height: 39px;
+font-size: 26px;
+font-weight: bold;
+color: #fff;
+}
+.c {
+clear: both;
+font-size: 1px;
+height: 0;
+line-height: 0;
+visibility: hidden;
+}
+.logo{
+line-height: 62px;
+height: 62px;
+font-size: 32px;
+font-weight: normal;
+color: #F60;
+width: 300px;
+float: left;
+}
+.top_r{
+margin-left: 320px;
+text-align: right;
+height: 62px;
+}
+.top_link{padding:4px 10px 0 0;font-size: 12px; }
+.top_link a{color:#666;text-decoration: none;margin-right: 8px; }
+.top_version{
+color: #ddd;
+font-size: 26px;
+font-style: italic;
+cursor: default;
+padding-right:20px;
+padding-top: 4px;
+}
+
+.block{width: 960px;margin: 0 auto;}
+.main{margin-top: 22px;}
+.main_l{
+float: left;
+border:1px solid #ccc;
+width: 168px;
+background: #fff;
+padding-bottom: 10px;
+}
+.hover{color: #d60100;font-weight: bold;}
+.main_l .li_index{border: none;}
+.main_l li{
+height: 30px;
+line-height: 30px;
+font-size: 14px;
+text-align: left;
+padding-left: 20px;
+border-top: 1px dashed #e0e0e0;
+}
+.main_l li a:HOVER{text-decoration: underline;}
+.main_l h3{
+font-weight: normal;
+background: #efefef;
+padding: 10px;
+text-shadow: 0px 1px 0 #DDD;
+}
+.main_r{
+margin-left: 200px;
+padding:20px;
+background: #fff;
+min-height: 400px;
+}
+.title h3{
+font-weight: 500;
+border-bottom: 2px solid #eee;
+padding: 4px 0;
+margin-bottom: 10px;
+}
+.footer{
+border-top: 1px solid #eee;
+margin-top: 20px;
+margin-bottom: 40px;
+text-align: center;
+font-size: 12px;
+color: #333;
+padding-top:4px; 
+}
+
+.error404 p{text-indent: 0;}
+
+.error404 li{list-style-type: disc;}
+.error404{padding:20px;padding-top:0; }
+.error404 .link a{color:#F60;margin-right: 4px;}
+.error404 .link a:HOVER{text-decoration: underline;}
+
+.msg404{font-size: 30px;}.msg404 span{font-weight: bold;color: #FF4500;}
+li.error-img{padding-top:10px; height: 160px;line-height:160px; }
+.tips{margin-top: 20px;line-height: 24px;color:#666;}

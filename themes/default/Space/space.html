@@ -1,0 +1,59 @@
+<include file="Public:header_space"/>
+<div class="main_left">
+
+<div class="space_title">
+<div class='zonename'>
+<a href='{:U("Space/index?uid=$uid")}'>
+<gt name="user['zonename']|strlen" value='0'>{$user['zonename']}<else/>{$user['name']}的空间</gt>
+</a>
+</div>
+<div class='zonetitle'>
+<gt name="user['zonetitle']|strlen" value='0'>
+<span>{$user['zonetitle']}</span>
+</gt>
+</div>
+</div>
+
+<div class='tab'>
+<volist name='tab' id='vo'>
+<php>if($key==$type){</php>
+<a href='javascript:void(0);' class="hover">{$vo}</a>
+<php>}else{</php>
+<a href='{:U("Space/$key?uid=$uid")}' class=" ">{$vo}</a>
+<php>}</php>
+</volist>
+<div class='c'></div>
+</div>   
+
+<if condition="ACTION_NAME eq 'pub' OR  ACTION_NAME eq 'index' OR ACTION_NAME eq 'digg'">
+<volist name="list" id="vo">
+{:W('Contentblock',array('mid'=>$mid,'t'=>$vo,'tag'=>getTag($vo['id'])))}
+</volist>
+{$page}
+</if>
+
+<if condition="ACTION_NAME eq 'profile'">
+<include file="Space:profile"/>
+</if>
+
+<if condition="ACTION_NAME eq 'follower' OR ACTION_NAME eq 'following'">
+<include file="Space:follow"/>
+</if>
+
+<if condition="ACTION_NAME eq 'weibo'">
+<include file="Space:weibo"/>
+</if>
+
+</div>
+
+
+<div class='main_right space_r' >
+<div class='rightBox'>
+<include file="Space:userbar"/>
+</div>
+<div class="shadow_r"></div>
+{:W('MicroText',array('list'=>$hotList,'title'=>$hotTitle))}
+{:hook('stopScrollHere')}
+<include file="Block:ad-right-2"/>
+</div>
+<include file="Public:footer"/>

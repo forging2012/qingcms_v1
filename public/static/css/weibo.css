@@ -1,0 +1,149 @@
+/*
+ *weiboBox
+ */
+
+.weiboBlock{background: #fff;border-bottom: 1px solid #eee;padding: 10px 10px 0 10px;}
+.weiboBlock a:HOVER{text-decoration: underline;}
+.weibo_pic img{ border: 1px solid #CCC;padding: 1px;}
+.weibo_pic{margin: 4px 0;}
+.weibo_bar{font-size: 12px;height: 18px;line-height: 18px;margin: 4px 0;}
+.weibo_bar .r{float: right;}
+
+.weiboBlock .content img{line-height: 23px;vertical-align: top;border: 0;}
+
+/*
+ * weiboBox
+ */
+.weiboBox{margin-bottom: 10px;}
+.weibo_sub{
+height: 67px;
+width: 80px;
+border: 0;
+float: right;
+cursor:pointer;
+background: url(../image/weibo_sub.gif) 0 0;
+}
+.weibo_sub_right{
+background: url(../image/weibo_sub.gif) -90px 0;
+}
+
+.weibo_sub_hover{
+height: 67px;
+width: 80px;
+border: 0;
+float: right;
+background: url(../image/weibo_sub.gif) -40px 0;
+}
+.weibo_area{
+max-width: 83.5%;
+min-width: 83.5%;
+width: 83.5%;
+height: 55px;
+max-height: 55px;
+min-height: 55px;
+padding: 5px;
+margin: 0;
+line-height: 18px;
+
+border-color: #abadb3 #dbdfe6 #d2d2d2 #cecece;
+border-radius: 3px;
+resize: none;
+}
+.weibo_t{
+line-height: 32px;
+height: 32px;
+padding: 0 80px 4px 0px;
+background: url(../image/weibo.gif) no-repeat 10px 10px;
+}
+.weibo_t .t_len{float: right;color: #999;}
+.weibo_b{padding: 4px 0;}
+.weibo_type a{padding-left: 20px;font-size:12px;margin-right: 4px;  }
+.weibo_type a:HOVER{text-decoration: underline;}
+.weibo_type .smiley{background: url(../image/weibo_type.png) no-repeat 0 0;}
+.weibo_type .pic{background: url(../image/weibo_type.png) no-repeat 0 -17px;}
+
+
+.file_input{
+display: none;
+}
+.weibo_type{margin-right: 400px;}
+.loading_weibo{
+float:right;
+display:inline-block;
+text-align: center;
+font-size: 12px;
+height: 20px;
+width:80px;
+background: #fff url('../image/loading.gif') no-repeat;
+background-position: center;	
+}
+.smiley_box{
+position: absolute;
+background: #fff;
+border: 1px solid #999;
+border-radius: 3px;
+padding:10px;
+width:420px;
+}
+.smiley_box img{
+padding:2px 0;
+}
+
+.ForwardingBox .smiley{
+padding-left: 20px;
+font-size: 12px;
+margin-right: 4px;	
+background: url(../image/weibo_type.png) no-repeat 0 0;
+}
+.ForwardingBox .btn{padding: 2px 10px;float: right;margin-right: 10px;}
+.ForwardingBox .b{margin: 4px 0;}
+.ForwardingArea{
+max-width: 96%;
+min-width: 96%;
+max-height: 35px;
+min-height: 35px;
+padding: 5px;
+margin: 0;
+line-height: 12px;
+font-size:12px;
+border-color: #abadb3 #dbdfe6 #d2d2d2 #cecece;
+resize: none;		
+}
+.ForwardingShow{
+border: 1px solid #eee;
+border-bottom:none;
+font-size: 12px;
+color: #666;
+margin: 2px 0 2px 60px;
+}
+.ForwardingShow .weiboBlock{background: #eee; }
+
+.showCommentBox,.ForwardingBox{
+margin:0 0 4px 60px;
+padding:10px 6px;
+font-size: 12px;
+border-top: 1px dashed #eee;
+background: #f4ffd4;
+}
+.smiley{
+padding-left: 20px;
+font-size: 12px;
+margin-right: 4px;	
+background: url(../image/weibo_type.png) no-repeat 0 0;
+}
+.showCommentBox .btn{padding: 2px 10px;float: right;margin-right: 10px;}
+.showCommentBox .b{margin: 4px 0;}
+.CommentArea{
+max-width: 96%;
+min-width: 96%;
+max-height: 35px;
+min-height: 35px;
+padding: 5px;
+margin: 0;
+line-height: 12px;
+font-size:12px;
+border-color: #abadb3 #dbdfe6 #d2d2d2 #cecece;
+resize: none;		
+}
+.group_nav{}
+.group_nav .hover{ color:red;}

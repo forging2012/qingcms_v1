@@ -1,0 +1,80 @@
+<include file="Public:header" />
+<div>
+	<h1 class='title'>站点信息</h1>
+</div>
+<div class='siteinfo'>
+	<form action="__URL__/doSetSiteInfo" method="post">
+		<table>
+			<tbody>
+
+				<tr>
+					<td colspan="2">站点名称:</td>
+				</tr>
+				<tr class='trboder'>
+					<td width="260px"><input type="text" name='cms_name' value='{$cms_name}'></td>
+					<td>站点名称，将显示在浏览器窗口标题等位置</td>
+				</tr>
+
+				<tr>
+					<td colspan="2">网站名称:</td>
+				</tr>
+				<tr class='trboder'>
+					<td><input type="text" name='site_name' value='{$site_name}'></td>
+					<td>网站名称，将显示在Logo处、页面底部的联系方式处</td>
+				</tr>
+
+				<tr>
+					<td colspan="2">网站 URL:</td>
+				</tr>
+				<tr class='trboder'>
+					<td><input type="text" name='url' value='{$url}'></td>
+					<td>网站 URL，将作为链接显示在Logo处、页面底部</td>
+				</tr>
+
+				<tr>
+					<td colspan="2">网站备案信息代码:</td>
+				</tr>
+				<tr class='trboder'>
+					<td><input type="text" name='icp' value='{$icp}'></td>
+					<td>页面底部可以显示 ICP 备案信息，如果网站已备案，在此输入您的授权码，它将显示在页面底部，如果没有请留空</td>
+				</tr>
+
+				<tr>
+					<td colspan="2">默认keywords:</td>
+				</tr>
+				<tr class='trboder'>
+					<td><input type="text" name='keywords' value='{$keywords}'></td>
+					<td>keywords用于搜索引擎优化，放在 meta 的 keyword 标签中，多个关键字间请用半角逗号 "," 隔开</td>
+				</tr>
+
+				<tr>
+					<td colspan="2">默认description:</td>
+				</tr>
+				<tr class='trboder'>
+					<td><input type="text" name='description'
+						value='{$description}'></td>
+					<td>description用于搜索引擎优化，放在 meta 的 description 标签中</td>
+				</tr>
+
+				<tr>
+					<td colspan="2">风格包:</td>
+				</tr>
+				<tr class='trboder'>
+					<td>
+					<select name='themes'>
+					<volist name='themesArr' id='vo'>
+					<option value='{$vo}' <?php if($themes==$vo) echo "selected='selected'" ?> >{$vo}</option>
+					</volist>
+					</select>	
+					</td>
+					<td>不同的风格</td>
+				</tr>
+
+				<tr>
+					<td colspan="2"><input type="submit" class='btn_input' value='提交'></td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+</div>
+<include file="Public:footer" />

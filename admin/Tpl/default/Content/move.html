@@ -1,0 +1,43 @@
+<include file="Public:header" />
+<div>
+	<h1 class='title'>文档管理</h1>
+</div>
+<div class="toolbar">
+移动文档到新的栏目
+</div>
+<div class='content_list'>
+<div class='move'>
+<form action="__ACTION__" method="get">
+<input type='hidden' name='ids' value='{$ids}'/>
+<div> 把文档：{$ids}移动到：</div>
+<div>
+<select name='cate' class='select'> 
+<option selected="selected" value='0'>选择需要移动到的位置...</option>
+
+<volist name='cate1' id='vo'>
+<option value='{$vo["id"]}'> {$vo['name']} </option>
+
+<volist name='vo["cate2"]' id='vo2'>
+<option value='{$vo2["id"]}'>-----{$vo2['name']}</option>
+</volist>
+
+</volist>
+</select>
+</div>
+<div> 
+<a href="javascript:void(0);" class="btn_aw" onclick="sub();"><span>确定</span></a>
+<a href="javascript:history.back();" class="btn_aw"><span>返回</span></a>
+</div>
+</form>
+</div>
+</div>
+<script>
+function sub(){
+	if($('select').val()=='0'){
+		ui.error('请选择需要移动到的栏目');
+		return false;
+	}
+	$('form').submit();
+}
+</script>
+<include file="Public:footer"/>

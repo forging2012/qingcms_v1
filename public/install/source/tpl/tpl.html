@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>QingCms安装程序-<?php echo $_CONFIG['version'];?></title>
+<script type="text/javascript" src="<?php echo __STATIC__;?>/js/jquery-1.8.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo url_stylesheet();?>" />
+
+</head>
+<body>
+<div class='top'>
+	<div class='block'>
+		<a href="<?php echo __INSTALL__; ?>" class='logo'>QingCms安装程序</a>
+		<div class='top-r'>
+			<div class='top-link'>
+				<a href="<?php echo $_CONFIG['site']; ?>"  target="_blank">官方网站</a>
+				<a href="<?php echo $_CONFIG['weibo']; ?>" target="_blank">微博</a>
+			</div>
+			<div class='top-version'><?php echo $_CONFIG['version'];?></div>
+		</div>
+	</div>
+</div>
+	<div class='main block'>
+		<div class='main-l'>
+			<h3>安装步骤</h3>
+			<ul>
+			<?php foreach ($step_list as $likey=>$livalue){ ?>
+			 <li <?php if($step_curr==$likey){echo ' class="step-curr" ';}elseif($livalue[1]<$step_id_curr){echo ' class="step-done" ';}?>><?php echo $livalue[0];?></li>
+			<?php } ?>
+			</ul>
+		</div>
+		<div class='main-r' id='J-main-r'><?php include($__include__); ?></div>
+		<div class='c'></div>
+	</div>
+	<div class='foot block'>QingCms © copyright <a target='_blank' href='http://www.qingcms.com'>www.qingcms.com</a> All Rights Reserved</div>
+</body>
+</html>
+<?php 
+// dump(get_defined_vars());
+// var_dump($step_curr);
+?>

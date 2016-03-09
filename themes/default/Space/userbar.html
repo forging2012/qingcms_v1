@@ -1,0 +1,29 @@
+<div class='userbar'>
+<div class='avatar'>
+<div class='avatar_l'>
+<img src='__STATIC__/image/avatar.gif'/>
+
+</div>
+<div class='avatar_r'>
+<div class='t'> 
+<a href='{:U("Space/index?uid=$uid")}'>{$user['name']}</a>{:W('Rank',array('score'=>$user['score']['score']))}
+</div>
+<div class='m'>
+<?php if($mid!=$uid){ ?>
+{:W('BtnFollow',array('uid'=>$uid,'mid'=>$mid,'Loc'=>'userBar'))}
+<?php } ?>
+</div>
+</div>
+</div>
+<div class='info'>
+<span><a href='{:U("Space/pub?uid=$uid")}'>{$uid|getCount=###,'pub'}<br/> 发布</a></span>
+<span><a href='{:U("Space/digg?uid=$uid")}'>{$uid|getCount=###,'digg'}<br/> 推荐</a></span>
+<span><a href='{:U("Space/profile?uid=$uid")}'>个人<br/>资料</a></span>
+<span><a href='{:U("Space/following?uid=$uid")}'>{$uid|getCount=###,'following'}<br/> 关注</a></span>
+<span><a href='{:U("Space/follower?uid=$uid")}'>{$uid|getCount=###,'follower'}<br/> 粉丝</a></span>
+</div>
+
+</div>
+
+
+

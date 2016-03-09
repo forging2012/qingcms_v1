@@ -1,0 +1,93 @@
+input{border: 0;}
+a.btn_a{
+font-size:12px;
+color:#fff;
+background:#3B5998;
+padding:4px 20px;
+border: 1px solid #3B5998;
+border-radius:2px;
+cursor: pointer;	
+}
+input.btn_input{
+	height:32px;
+    width:72px;
+	background: url(../image/input_btn.gif) no-repeat;
+    vertical-align:middle;
+	color: #333;
+	font-size: 14px;
+	font-weight: bold;
+	cursor: pointer;
+	padding: 0;
+	border: 0;	
+}
+input.btn{	
+	height:32px;
+    width:72px;
+	background: url(../image/input_btn.gif) no-repeat;
+	background-position:0 0;
+    vertical-align:middle;
+	color: #333;
+	font-size: 14px;
+	font-weight: bold;
+	cursor: pointer;
+}
+input.btn_down{	
+	height:32px;
+    width:72px;
+	background-image: url(../image/input_btn.gif);
+	background-position:-148px 0px;
+	background-repeat:no-repeat;
+    vertical-align:middle;
+	color: #333;
+	font-size: 14px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+input.btn_w{
+	height:32px;
+    width:72px;
+	background-image: url(../image/input_btn.gif);
+	background-position:-74px 0px;
+	background-repeat:no-repeat;
+    vertical-align:middle;
+	color: #333;
+	font-size: 14px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.text,.area,.select{
+font-family: "Microsoft Yahei", "微软雅黑", Tahoma, Arial, Helvetica, STHeiti;
+border: 1px solid #DDD;
+font-size: 14px;
+padding: 2px;
+vertical-align: middle;	
+}
+.text_focus{
+border:1px solid ;
+border-color:#90ad54 #d8edaf #d8edaf #90ad54;
+background-color:#f4ffd4;	
+}
+
+.ico_success{
+width: 14px;
+height: 14px;
+vertical-align: middle;
+margin-right: 5px;
+margin-top:10px;
+background: transparent url(../image/icon_2.gif) no-repeat;
+display: inline-block;
+background-position:0 0;
+}
+.ico_error{
+width: 14px;
+height: 14px;
+vertical-align: middle;
+margin-right: 5px;
+_margin-top: 13px;
+_vertical-align: baseline;
+background: transparent url(../image/icon_2.gif) no-repeat;
+display: inline-block;
+background-position:-18px 0;
+}

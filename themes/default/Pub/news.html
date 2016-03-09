@@ -1,0 +1,141 @@
+<include file="Public:header"/>
+<div class='main_left'>
+{:W('Tab',array('tab'=>$tab_pub,'type'=>$cateNow,'noAll'=>1))}
+<div class='postBox'>
+<form enctype="multipart/form-data" action="__APP__/Pub/doPub" method='post' id='pubForm'/>
+
+<if condition="$cateNowArr['type'] eq 2 ">
+<div class='pub_url'>
+<div class='title'>链接：</div>
+<div class='urlBox'> 
+<input class='text' type='text' name='url'/>
+<input type='hidden' name='isUrl' value='1'/>
+</div>
+</div>
+</if>
+
+<div class='pub_content'>
+<div class='title'>正文：</div>
+<div>
+<textarea name='content' class='post_area area'></textarea>
+</div>
+</div>
+<div class="postTag">
+标签：<input name='tags' id='tag_input' type='text' class='text'/>
+<span class='tag_pre_list' title="标签预览"></span>
+</div>
+<div class='pic_video'> 
+
+<if condition="$cateNowArr['video'] eq  1 ">
+<a href="javascript:void(0)" onclick="pub.video.click(this);" class="pub_v">视频</a>
+<input type='hidden' name='video' value=''>
+
+</if>
+
+<if condition="$cateNowArr['pic'] eq  1 ">
+<a href="javascript:void(0)" onclick="return false;pub.image.click(this)" class="pub_pic">图片</a>
+<input type="file" name="image"  id="pub_image"/> 
+
+</if>
+
+<div class='c'></div>
+</div>
+
+<div class="submitpost">
+<input type='submit' value='发表' class='button'  onclick='ajaxPub();return false;'>
+
+<input type='hidden' name='cate' value='{$cateNow}'/>
+</div>
+</form>
+</div>
+</div>
+
+
+<script>
+$(document).ready(function(){
+	//alert(1111);
+	//自动检测标签合法性
+	$("#tag_input").blur(function(){
+		var tag=$(this).val();
+		tag=dt(tag);
+		$.post(APP+"/Pub/ajaxCheckTag",{'tag':tag},function(txt){
+			$('.tag_pre_list').html(txt);
+		});
+		
+	});	
+	//输入链接时
+// 	$("input[name=url]").focus(function(){
+		
+		
+// 	});
+	
+	
+	
+});
+function dt(tag){
+	var arrTag= tag.split(',');
+	var newTag = '';
+	for(key in arrTag){
+		//去掉单个标签首尾的空格    ---， ---，  最后会多出一个，由slice过滤
+		newTag = newTag+arrTag[key].replace(/(^\s*)|(\s*$)/g,"") + ',';
+	}
+	var r=newTag.slice(0,-1);
+	return r;
+}
+function ajaxPub(){
+	var options = {
+			dataType:'json',
+		    success: function(txt) {
+// 		    	document.write('<pre>');
+//  		    	document.write(txt);  //json对象
+//  		    	return false;
+ 		    	
+// 		    	document.write('<br/>');
+//  		    document.write(txt.empty); //1
+
+             //   alert(222);
+  	
+				if(txt['empty']){
+					ui.error('请输入正文');
+				}else if(txt['noUrl']){
+					ui.error('请输入链接');
+				}else if(txt['upErrorMsg']){
+					ui.error(txt['upErrorMsg']);
+				}else if(txt['success']){
+					ui.success('恭喜，发布成功');
+					//跳转到刚发布的文章预览
+					setTimeout('reurl('+txt['tid']+')',500);	
+				}else if(txt['error']){
+					ui.error('发布失败');
+				}
+		    }
+	};		
+	$('#pubForm').ajaxSubmit(options);
+    return false;	
+}
+function reurl(tid){
+	window.location.href=APP+"/Index/detail/id/"+tid;	
+}
+
+
+function post(){
+	var content=$("textarea[name=content]").val();
+	var tags=$("input[name=tags]").val();
+	var cate=$("input[name=cate]").val();
+	tags=dt(tags);	
+	$.getJSON(APP+"/Pub/dopub",{'tags':tags,'content':content,'cate':cate},function(txt){		
+			if(txt['empty']){
+			ui.error('没有输入内容');
+		}else if(txt['success']){
+			ui.success('恭喜，发布成功');
+			//跳转到刚发布的文章预览
+			//setTimeout('',3000);
+			setTimeout('reurl('+txt['tid']+')',500);	
+		}else if(txt['error']){
+			ui.error('发布失败');
+		}
+	});	
+}
+
+</script>
+<include file="Public:footer"/>

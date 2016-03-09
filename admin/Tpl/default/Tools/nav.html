@@ -1,0 +1,81 @@
+<include file="Public:header"/>
+
+<div class='nav'>
+<div><h1 class='title'>顶部导航</h1></div>
+<div class='nav_table'>
+<form action="__URL__/saveNav" method="post" id='saveNavF'>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tbody id='tbody'>
+<tr>
+<th>删除</th>
+<th>排序</th>
+<th>名称</th>
+<th>标识符</th>
+<th>链接</th>
+<th title='内容模型'>内容模型</th>
+<th>启用</th>
+</tr>
+<volist name='cate' id='vo2'>
+<tr>
+<td class='delete'><input  type="checkbox" class='checkbox' disabled="disabled"/></td>
+<td class='order'><input  type='text' value="{$vo2['displayorder']}" disabled="disabled"/></td>
+<td class='name'><input  type='text'  value="{$vo2['name']}" disabled="disabled"/></td>
+<td class='nid'>
+<input  type='text' value="{$vo2['nid']}" disabled="disabled"/>
+</td>
+<td class='nid'>
+</td>
+<td class='type'>系统栏目</td>
+<td class='disabled' ><input type='checkbox' class='checkbox' checked="checked" disabled="disabled"/>
+</td>
+</tr>
+</volist>
+
+<tr><td colspan="7">&nbsp;</td></tr>
+
+<volist name='nav' id='vo'>
+<tr>
+<input type='hidden' name='id[{$vo["id"]}]' value='{$vo["id"]}'>
+<td class='delete'><input name='delete[{$vo["id"]}]' type="checkbox" class='checkbox' value='1'/></td>
+<td class='order'><input name='displayorder[{$vo["id"]}]' type='text' value="{$vo['displayorder']}"/></td>
+<td class='name'><input  type='text' name='name[{$vo["id"]}]' value="{$vo['name']}"/></td>
+<td class='nid'><input  type='text' name='nid[{$vo["id"]}]' value="{$vo['nid']}"/></td>
+<td class='url'>
+<input  type='text' name="url[{$vo['id']}]" value="{$vo['url']}"/>
+</td>
+<td class='type'>外部链接</td>
+<td class='disabled' >
+<input type='checkbox' class='checkbox' name="disabled[{$vo['id']}]" value='1'
+<if condition="$vo['disabled'] eq 1 ">checked="checked" </if>
+/>
+</td>
+</tr>
+</volist>
+
+<tr id='add_before'><td>&nbsp;</td><td colspan="5"><a href='javascript:void(0);' class='addTop' onclick='addTop()'>添加顶部导航</a></td></tr>
+<tr><td>&nbsp;</td><td colspan="5"><input type='submit' class='btn_input' value='提交'  /></td></tr>
+
+</tbody>
+</table>
+
+</form>
+</div>
+</div>
+<script>
+var topInc=100;
+function addTop(){
+	var top=
+		"<tr>"+
+		"<input type='hidden' name='id["+topInc+"]' value='0' >"+
+		"<td class='delete'></td>"+
+		"<td class='order'><input name='displayorder["+topInc+"]' value=''/></td>"+
+		"<td class='name'><input name='name["+topInc+"]' value=''/></td>"+
+		"<td class='nid'><input name='nid["+topInc+"]' value=''/></td>"+
+		"<td class='url'><input name='url["+topInc+"]' value=''/></td>"+
+		"</tr>";
+		$("#add_before").before(top);
+		topInc+=1;
+}
+</script>
+
+<include file="Public:footer"/>

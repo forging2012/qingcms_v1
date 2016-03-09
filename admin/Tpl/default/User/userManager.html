@@ -1,0 +1,123 @@
+<include file="Public:header" />
+<div>
+	<h1 class='title'>用户管理</h1>
+</div>
+<div class='userManager'>
+<div class="toolbar">
+<a href="{:U('User/addUser')}" class="btn_aw" ><span>添加用户</span></a>
+</div>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+				<tr>
+				    <th width="2%">选择</th>
+					<th width="2%">ID</th>
+					<th width='20%'>用户信息</th>
+					<th width='10%'>用户组</th>
+					<th width='10%'>注册时间</th>
+					<th width='10%'>状态</th>
+					<th width='10%'>操作</th>
+				</tr>
+
+				<volist name="userlist" id="vo">
+				<tr>
+				    <td><input name="select[]" type="checkbox" value="{$vo['uid']}" ></td>
+					<td>{$vo['uid']}</td>
+					<td><a target='_blank' href='__ROOT__/index.php?m=Space&uid={$vo["uid"]}'>{$vo['name']}</a> <br />{$vo['email']}
+					</td>
+					<td>
+					<?php if($vo['is_admin']) echo '管理员'; else echo '普通'; ?>
+					</td>
+					<td>{$vo['ctime']|normaltime=###}</td>
+					<td>
+					<?php if($vo['is_active']) echo '已激活'; else echo '<a href="javascript:void(0);"  onclick="active('.$vo[uid].');">未激活</a>'; ?>
+					</td>
+					<td>
+					<a href="{:U('User/editUser?&uid='.$vo['uid'])}">编辑</a>
+					<a href="javascript:void(0);"  onclick="del({$vo['uid']});">删除</a>
+					</td>
+				</tr>
+
+				</volist>
+</tbody>
+</table>
+<div class="toolbar">
+<a href="javascript:void(0);" class="btn_aw" onclick="selectAll();"><span>全选</span></a>
+<a href="javascript:void(0);" class="btn_aw" onclick="selectNo();"><span>取消</span></a>
+<a href="javascript:void(0);" class="btn_aw" onclick="active();"><span>激活</span></a> 
+<a href="javascript:void(0);" class="btn_aw" onclick="del();"><span>删除</span></a> 
+</div>
+</div>
+<script>
+//获取已选择用户的ID数组
+function getChecked(){
+    var ids = new Array();
+    $.each($('input:checked'), function(i, n){
+        ids.push($(n).val());//像数组末尾添加数据
+    });
+    return ids;//数组
+}
+/**
+ * 激活
+ */
+function active(ids){
+    if(ids) {
+       var length = 1;         
+    }else {
+        ids=getChecked();
+        length=ids.length;
+        ids=ids.toString();
+    }
+    if(ids=='') {
+        ui.error('至少选择一个用户');
+        return false;
+    }
+    //if(confirm('您将激活选中的'+length+'个用户，确定继续？')) {
+    if(confirm('您将激活用户：'+ids+'；确定继续？')) {	
+        $.post("{:U('User/active')}",{ids:ids},function(res){
+        	if(res) {
+                ui.success('激活成功');
+                ui.reload();
+            }else {
+                ui.error('激活失败');
+            }
+       });
+    }	
+}
+/**
+ * 删除
+ */
+function del(ids){
+    if(ids) {
+       var length = 1;         
+    }else {
+        ids=getChecked();
+        length=ids.length;
+        ids=ids.toString();
+    }
+    if(ids=='') {
+        ui.error('至少选择一个用户');
+        return false;
+    }
+    if(confirm('您将删除用户：'+ids+'；确定继续？')) {	
+        $.post("{:U('User/del')}",{ids:ids},function(res){
+        	if(res) {
+                ui.success('删除成功');
+                ui.reload();
+            }else {
+                ui.error('删除失败');
+            }
+       });
+    }	
+}
+/**
+ * 选择全部
+ */
+ function selectAll(){
+	$(':checkbox').attr('checked','checked');
+}
+ function selectNo(){
+	$(':checkbox').removeAttr('checked');
+}
+
+</script>
+<include file="Public:footer" />

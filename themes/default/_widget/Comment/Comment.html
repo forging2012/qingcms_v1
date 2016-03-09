@@ -1,0 +1,79 @@
+
+<div class='comment'>
+<div class='comment_input'>
+<form action='__APP__/Public/addComment' method='post' id='commentForm'>
+<input type='hidden' name='tid' value='{$comment["tid"]}'/>
+<input type='hidden' name='reply_uid'  value='{$comment["uid"]}'/>
+
+<textarea class='comment_ta area' id='comment_ta' name='content'></textarea>
+<div class='comment_sub'>
+<span class='comLen_span'>还可以输入<strong id='comLen'><script>$('#comLen').html(comLen);</script></strong>字</span>
+<input type='submit' value='发表' class='btn comment_submit_{$comment["tid"]}' 
+<if condition="ACTION_NAME eq 'detail'">
+onclick='comment.add({$comment["tid"]},"detail");return false;'    
+<else/>
+onclick='comment.add({$comment["tid"]},"ajax");return false;' 
+</if>
+/> 
+<span>共<strong>{$comment['num']}</strong>条评论</span>
+ </div>
+</form>          	             
+</div>
+<div class='comment_list'>
+<ul>
+<volist name='comment["list"]' id='vo'>
+<li class='comment_block comment_li_{$vo["id"]}'  id='lou{$vo["position"]}'>
+<div>
+
+<span class='comment_r' title=''>{$vo['position']}</php></span>
+
+<span class='comment_l'>
+<a href='__APP__/Space/index/uid/{$vo["uid"]}'>{$vo['uid'|getname=###]}</a>:{$vo['content']}
+</span>
+</div>
+<div class='comment_info'>
+
+<span class='info_right'>
+<a class='report' href='javascript:void(0);' onclick='comment.report({$vo["id"]});' style='display:none;'>举报</a>
+
+<?php if($mid==$vo['uid']){ ?> 
+<a  href='javascript:void(0);' callback='comment.del({$vo["id"]},{$comment["tid"]})' onclick='ui.confirm(this,"确定删除这条评论?");return false;'>删除</a>
+<?php } ?>
+
+<a class='reply_btn' href='javascript:void(0);' 
+<if condition="ACTION_NAME eq 'detail'">
+onclick='comment.reply({$vo["id"]},"detail");return false;'   
+<else/>
+onclick='comment.reply({$vo["id"]},"reload");return false;' 
+</if>
+>回复</a>
+</span>
+
+<if condition="$vo['reply_comment_id'] neq 0 ">
+<span class='reply_info'>
+<img src="__STATIC__/image/qa.gif">{$vo['reply_comment_id']|replyAndUrl=###,$comment["tid"],$vo["reply_uid"]}<img src="__STATIC__/image/qz.gif" >
+</span>
+</if>
+
+</div>
+</li>
+</volist>
+</ul>
+</div>
+<if condition="$comment['ajax'] eq 1">
+<div class='comment_more'>
+<a class='comment_up' href='javascript:void(0);'  onclick='$("#comment_list_{$comment[\'tid\']}").slideUp(function(){ $(this).html("");});'><span></span>收起</a>
+<if condition="$comment['num'] gt 5">
+<a href='__APP__/Index/detail/id/{$comment["tid"]}'>查看更多...</a>  <span>共{$comment['num']}条评论</span>
+</if>
+</div>
+<else/>
+{$comment['page']}
+</if>
+</div>
+<div class='c'></div>
+<script>
+$(document).ready(function(){
+	 comment.init();	
+});
+</script>

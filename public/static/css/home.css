@@ -1,0 +1,73 @@
+
+/**
+ * 960=2+140+818
+ * 818=20+600+198
+ */
+.home{background:#666;border:1px solid #eee;margin-top: 20px;}
+.home_l{float: left; width: 140px;padding-bottom:10px;}
+.home_l{color:#fff;}
+.home_l a{color:#fff;}
+.home_cr{float:left;background: #fff;width: 818px;}
+.home_c{
+float:left;
+background: #fff;
+width: 600px;
+padding: 10px;
+
+}
+.home_r{float: right;background: #fff; width: 198px;}
+
+.weibo_area{
+min-height: 62px;
+max-height: 100px;
+min-width: 440px;
+max-width: 440px;	
+}
+
+.home_user{padding: 10px;}
+.usermenu {
+	padding-bottom: 10px;
+	border-top: 1px dashed #D4D4D4;
+}
+.usermenu li {
+}
+.usermenu li a{
+	display: inline-block;
+	line-height: 30px;
+	height: 30px;
+    width: 110px;
+	padding-left: 30px;
+	text-align:left;
+}
+.usermenu li a:HOVER{
+background: #333;
+}
+.usermenu li.hover a{
+background: #eee;
+color:#333;
+}
+
+.linkspace{padding:10px 10px 0 10px;}
+.linkspace span{
+margin: 0 10px;
+display: inline-block;
+text-align: center;
+}
+.linkspace .b{
+margin:4px 0;
+padding-left: 18px;
+background: url(../image/space.png) no-repeat 0 50%;
+}
+.linkspace .b a{font-size: 12px;}
+.linkspace .b a:HOVER {text-decoration: underline;}
+.linkspace .t{margin-bottom: 4px; }
+hr.da {
+height: 0;
+border: none;
+border-top: 1px dashed #CDCDCD;
+background: transparent;
+color: transparent;
+}
+
+
+

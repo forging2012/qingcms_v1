@@ -1,0 +1,35 @@
+
+.btn-box{
+margin-top: 15px;
+border-top: 1px solid #E7E8E9;
+vertical-align: middle;
+color: #2E71B8;
+padding-top: 10px;
+padding-left: 10px;
+padding-bottom: 20px;	
+}
+input.btn,a.btn{
+background-position: 0 0;
+border: 1px solid #2E71B8;
+border-radius: 2px;
+padding: 6px 40px;
+display: inline-block;
+cursor: pointer;
+font-size: 100%;
+line-height: normal;
+text-decoration: none;
+overflow: visible;
+vertical-align: middle;
+text-align: center;
+zoom: 1;
+white-space: nowrap;
+font-family: inherit;
+margin: 0;
+background-color: #3B7DC3;
+color: #FFF;
+}
+input.btn-w,a.btn-w{
+color: #333;
+background-color: #EEE;
+border: 1px solid #DDD;
+}

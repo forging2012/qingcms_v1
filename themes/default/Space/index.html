@@ -1,0 +1,89 @@
+<include file="Public:header"/>
+<div class="main_left">
+
+<div class="space_title">
+<a href='__APP__/Space/index/uid/{$uid}'>{$username}的空间</a>
+</div>
+
+<div class='tab'>
+<volist name='tab' id='vo'>
+<php>if($key==$type){</php>
+<a href='javascript:void(0);' class="hover">{$vo}</a>
+<php>}else{</php>
+<a href='__ACTION__/type/{$key}' class=" ">{$vo}</a>
+<php>}</php>
+</volist>
+<div class='c'></div>
+</div>    
+<div class='tab_nav'>
+<span>
+<a href='__ACTION__/order/new'>最新</a>
+<a href='__SELF__/order/hot'>最热</a>
+</span>
+<span class='right'>
+<a href='__APP__/Index/{$glob["cate"]}_latest'>24h</a>
+<a href='__APP__/Index/{$glob["cate"]}_hot'>7day</a>
+<a href='__APP__/Index/{$glob["cate"]}_hot'>30day</a>
+</span>
+
+</div>
+
+
+<div class='shadow'></div>
+<volist name="list" id="vo">
+{:W('Contentblock',array('mid'=>$mid,'t'=>$vo,'tag'=>getTag($vo['id'])))}
+</volist>
+{$page}
+</div>
+<div class='main_right' >
+<div class='rightBox'>
+<div class='userbar'>
+<div class='avatar'>
+<div class='avatar_l'><img src='__STATIC__/image/avatar.gif'/></div>
+<div class='avatar_r'><a href='__APP__/Space/index/uid/{$uid}'>{$username}</a></div>
+</div>
+<div class='info'>
+<span><a href='__APP__/Space/index/uid/{$uid}'>0 <br/> 发布</a></span>
+<span><a href='__APP__/Space/index/uid/{$uid}'>0 <br/> 推荐</a></span>
+<span><a href='__APP__/Space/index/uid/{$uid}'>0 <br/> 评论</a></span>
+</div>
+</div>
+</div>
+<div class="shadow_r"></div>
+
+
+<div class='rightBox'>
+<h3 class='title'>TA的热门发布</h3>
+<div>
+
+</div>
+</div>
+<div class="shadow_r"></div>
+
+
+<div class='rightBox'>
+<h3 class='title'>TA的最新发布</h3>
+<div>
+
+</div>
+</div>
+<div class="shadow_r"></div>
+
+
+<div class='rightBox'>
+<h3 class='title'>广告-1</h3>
+<div>
+<img src='__STATIC__/image/ad2.jpg'/>
+</div>
+</div>
+<div class="shadow_r"></div>
+<div class='rightBox'>
+<h3 class='title'>广告-2</h3>
+<div>
+<img src='__STATIC__/image/ad1.gif'/>
+</div>
+</div>
+<div class="shadow_r"></div>
+
+</div>
+<include file="Public:footer"/>

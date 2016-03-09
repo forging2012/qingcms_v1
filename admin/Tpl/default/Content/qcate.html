@@ -1,0 +1,170 @@
+<include file="Public:header"/>
+<div><h1 class='title'>栏目编辑</h1></div>
+
+<div class='qcate'>
+<div class="toolbar">
+<a href="javascript:void(0);" class="btn_aw" onclick="show_all();"><span>全部展开</span></a> 
+<a href="javascript:void(0);" class="btn_aw" onclick="hide_all();"><span>全部折叠</span></a>
+</div>
+<div>
+<form action="__URL__/doQcate" method="post" id='saveCateF'>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tbody id='tbody'>
+<tr>
+<th >折叠</th>
+<th class='displayorder'>排序</th>
+<th class='name'>名称</th>
+<th class='nid'>标识符</th>
+<th class='type'>内容模型</th>
+<th class='default' title='默认栏目'>默认</th>
+<th class='isnav' >开启导航</th>
+<th class='delete'>删除</th>
+</tr>
+<volist name='cateTop' id='vo'>
+
+<tr class='trcate1' cateid='{$vo["id"]}'>
+
+<input type='hidden' name='id[]' value='{$vo["id"]}'>
+<input type='hidden' name='parentid[]' value='{$vo["parentid"]}'>
+<td class='zhe'><a href='javascript:void(0);' is=1>[-]</a></td>
+<td class='order'><input name='displayorder[]' type='text' value="{$vo['displayorder']}"/></td>
+<td class='name'>
+<input  type='text' name='name[]' value="{$vo['name']}"/>
+<span onclick='addcate2(this,{$vo["id"]});' class='addnav2'></span>
+</td>
+<td class='nid'><input  type='text' name='nid[]' value="{$vo['nid']}"/></td>
+
+ <td>
+ <select name='content_type[{$vo["id"]}]'>
+ <volist name='content_type' id='vo_type'>
+ <option value="{$vo_type['type_id']}" <?php if($vo['type_id']==$vo_type['type_id']) echo 'selected'; ?> >{$vo_type['name']}</option>
+ </volist>
+ </select>
+ </td>
+
+<td class='default'> 
+<input  type='radio' name="def" value="{$vo['id']}"
+<if condition="$vo['def'] eq 1 ">
+checked="checked"
+</if> 
+/>
+</td> 
+<td class='isnav'>
+<input  type='checkbox' name="isnav[]" value="{$vo['id']}"
+<if condition="$vo['isnav'] eq 1">checked="checked"</if>
+/>
+</td>
+<td class='delete'><input name='delete[]' type="checkbox" class='checkbox' value='{$vo["id"]}'/></td>
+
+</tr>
+<volist name='vo["cate2"]' id='vo2'>
+<tr class='trcate2 parentid_{$vo["id"]}' cateid='{$vo2["id"]}' >
+<input type='hidden' name='id[]'  value='{$vo2["id"]}'>
+<input type='hidden' name='parentid[]' value='{$vo2["parentid"]}'>
+<td class='zhe'></td>
+<td class='order'><input  type='text' name='displayorder[]' value="{$vo2['displayorder']}"/></td>
+<td class='name'><div class='nav2'><input  type='text' name='name[]' value="{$vo2['name']}"/></div></td>
+<td class='nid'><input  type='text' name='nid[]' value="{$vo2['nid']}"/></td>
+<td class='content_type'></td>
+<td class='default'></td>
+<td class='isnav'></td>
+<td class='delete'><input name='delete[]' type="checkbox" class='checkbox' value='{$vo2["id"]}'/></td>
+
+</tr>
+</volist>
+</volist>
+
+<tr id='add_before'><td>&nbsp;</td><td colspan="5"><a href='javascript:void(0);' class='addTop' onclick='addTop();'>添加顶部导航</a></td></tr>
+<tr><td>&nbsp;</td><td colspan="6"><input type='submit' value='提交' class='btn_input'  /></td></tr>
+<tr><td>&nbsp;</td><td colspan="6">提示：删除栏目时请先把文档移动到其他栏目</td></tr>
+
+
+</tbody>
+</table>
+</form>
+</div>
+</div>
+<script type="text/javascript">
+<!--
+$(document).ready(function(){
+	$('span.addnav2').mouseover(function(){
+		$(this).html('添加二级导航');
+	});
+	$('span.addnav2').mouseout(function(){
+		$(this).html('');
+	});		
+	//折叠监听
+	$('.zhe a').click(function(){
+		 var v=$(this).parents('.trcate1').attr('cateid');
+		 if($(this).attr('is')==1){
+			 $('.parentid_'+v).hide();
+			 $(this).attr('is',0);
+			 $(this).html('[+]');
+		 }else{
+			 $('.parentid_'+v).show();
+			 $(this).attr('is',1);
+			 $(this).html('[-]');
+		 }
+	});
+	//close监听
+	$('.close').live('mouseover',function(){
+		$(this).html('删除');
+	});
+	$('.close').live('mouseout',function(){
+		$(this).html('');
+	});	
+	$('.close').live('click',function(){
+		$(this).parents('tr').remove();
+	});		
+	//监听鼠标
+	$("tr.trcate2").mouseover(function(){
+		  $(this).attr('bgColor','#F8F8F6');
+		}).mouseout(function(){
+			$(this).removeAttr('bgColor');
+		});	
+	
+	
+	
+});
+/**
+ * 折叠全部
+ */
+ function hide_all(){
+	$('.trcate2').hide();
+	$('.zhe a').html('[+]');
+	$('.zhe a').attr('is',0);
+}
+ function show_all(){
+	$('.trcate2').show();
+	$('.zhe a').html('[-]');
+	$('.zhe a').attr('is',1);
+}
+function addcate2(obj,parentid){	
+	var cate2=
+	"<tr class='trcate2' >"+
+	"<input type='hidden' name='id[]' value='0' >"+
+	"<input type='hidden' name='parentid[]' value='"+parentid+"' >"+
+	"<td class='delete'></td>"+
+	"<td class='order'><input name='displayorder[]' value=''/></td>"+
+	"<td class='name'><div class='nav2'><input name='name[]' value=''/><span class='close'></span></div></td>"+
+	"<td class='nid'><input name='nid[]' value=''/></td>"+
+	"</tr>";	
+   $(obj).parents('.trcate1').after(cate2);
+}
+function addTop(){
+	var top=
+		"<tr class='trcate1' >"+
+		"<input type='hidden' name='id[]' value='0' >"+
+		"<input type='hidden' name='parentid[]' value='0' >"+
+		"<td class='delete'></td>"+
+		"<td class='order'><input name='displayorder[]' value=''/></td>"+
+		"<td class='name'><input name='name[]' value=''/><span class='close'></span></td>"+
+		"<td class='nid'><input name='nid[]' value=''/></td>"+
+		"<td colspan='4'></td>"+
+		"</tr>";
+		$("#add_before").before(top);
+}
+//-->
+</script>
+
+<include file="Public:footer"/>

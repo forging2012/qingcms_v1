@@ -1,0 +1,162 @@
+
+
+<!-- 帐号设置 -->
+<div class='account'>
+
+<if condition="$tabNow eq 'profile' ">
+<!-- 个人资料 -->
+<div class='profile'>
+<form action="{:U('User/doUser')}" method="post" onSubmit="return false;">
+<div class='b-box'>
+<h3  ty='base' class='hover'>基本资料:</h3>
+<div style='' class='m-box'>
+<ul>
+<li><span class='span_l'>昵称：</span><span class='span_c'><input class='text' type='text' name='name' value='{$user["name"]}'></span> </li>
+<li><span class='span_l'>性别：</span><span class='span_c'>男 <input name="sex" type="radio" value="1" <?php if($user['sex']==1) echo "checked='checked'"; ?> >&nbsp; 女 <input name="sex" type="radio" value="0" <?php if($user['sex']==0) echo "checked='checked'"; ?> /></span> </li>
+<li><span class='span_l'>所在地区：</span><span class='span_c'>{$user['location']['location']}&nbsp;&nbsp;<a id='editarea' href='javascript:void(0);' onclick='area.show();'>修改</a></span></li>
+<li style='display:none;' class='location'></li>
+<!-- <li><span class='span_l'>空间名称：</span><span class='span_c'><input class='text' type='text' name='zonename' value='{$user["zonename"]}'></span></li> -->
+<!-- <li><span class='span_l'>空间下标：</span><span class='span_c'><input class='text' type='text' name='zonetitle' value='{$user["zonetitle"]}'></span></li> -->
+<li><span  class='span_l'>&nbsp;</span><input class='btn' type='submit' value='保存'></li>
+</ul>
+</div>
+</div>
+</form>
+<form action="{:U('User/doProfile')}" method="post">
+<input name='type' type='hidden' value='contact'>
+<div class='b-box'>
+<h3 ty='contact'>联系方式:</h3>
+<div style='display:none;' class='m-box'>
+<ul>
+<volist name='profile' id='vo'>
+<?php if($vo['module']=='contact'){ ?>
+<li>
+<span class='span_l'>{$vo['name']}：</span>
+<span class='span_c'><input class='text' type='text' name="{$vo['key']}" value="{$vo['value']}"></span>
+<span class='span_r'>       
+<select class='select' name="{$vo['key']}privacy">
+<option value='1' <eq name="vo.privacy" value="1">selected='selected'</eq> >公开</option>
+<option value='0' <eq name="vo.privacy" value="0">selected='selected'</eq> >保密</option>
+</select>
+</span>
+</li>
+<?php } ?>
+</volist>
+<li><span class='span_l'>&nbsp;</span><input class='btn' type='submit' value='保存'></li>
+</ul>
+</div>
+</div>
+</form>
+
+<form action="{:U('User/doProfile')}" method="post">
+<input name='type' type='hidden' value='intro'>
+<div class='b-box'>
+<h3 ty='intro'>个人信息:</h3>
+<div style='display:none;' class='m-box'>
+<ul>
+<volist name='profile' id='vo'>
+<?php if($vo['module']=='intro'){ ?>
+<li>
+<span class='span_l'>{$vo['name']}：</span>
+<span class='span_c'><input class='text' type='text' name="{$vo['key']}" value="{$vo['value']}"></span>
+<span class='span_r'>       
+<select class='select' name="{$vo['key']}privacy">
+<option value='1' <eq name="vo.privacy" value="1">selected='selected'</eq> >公开</option>
+<option value='0' <eq name="vo.privacy" value="0">selected='selected'</eq> >保密</option>
+</select>
+</span>
+</li>
+<?php } ?>
+</volist>
+<li><span class='span_l'>&nbsp;</span><input class='btn' type='submit' value='保存'></li>
+</ul>
+</div>
+</div>
+</form>
+</div>
+</if>
+
+<if condition="$tabNow eq 'password' ">
+<!-- 修改密码 -->
+<div class='password'>
+<form action="{:U('User/doChangePassword')}" method="post">
+<div class='b-box'>
+<h3 class='hover'>更改密码:</h3>
+<div style='' class='m-box'>
+<ul>
+<li><span class='span_l'>旧密码：</span><input class='text' type='password' name="oldpassword" ></li>
+<li><span class='span_l'>新密码：</span><input class='text' type='password' name="password" ></li>
+<li><span class='span_l'>确认密码：</span><input class='text' type='password' name="repassword" ></li>
+<li><span class='span_l'>&nbsp;</span><input class='btn' type='submit' value='保存'></li>
+<li style='font-style: italic;font-size: 12px;'><?php echo L('tigPw'); ?></li>
+</ul>
+</div>
+</div>
+</form>
+</div>
+</if>
+
+<if condition="$tabNow eq 'credit' ">
+<!-- 积分 -->
+<div class='credit'>
+<div class='b-box'>
+<h3 class='hover'>我的积分：</h3>
+<div style='' class='m-box'>
+<ul>
+<li><span class='span_l'>积分：</span>{$user['score']['score']}</li>
+<li><span class='span_l'>金钱：</span>{$user['score']['gold']}</li>
+<li><span class='span_l'>等级：</span>{:W('Rank',array('score'=>$user['score']['score']) )}</li>
+<!-- <li style='padding-left:20px;font-style: italic;font-size: 12px;'>积分=登录时长X10+金钱+粉丝数X1+文章数量 (登录时长单位为小时)</li> -->
+</ul>
+</div>
+</div>
+
+<div class='b-box'>
+<h3 class=''>积分规则:</h3>
+<div style='display:none;' class='m-box'>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class='rule_table'>
+<tr>
+    <th>动作名称</th>
+    <th>周期范围</th>
+    <th>周期内最多奖励次数</th>
+    <th>金钱</th>
+</tr>    
+<volist name='rule' id='vo'>
+<tr <eq name='key%2' value='1'>class='alt'</eq> >
+   <td>{$vo['rulename']}</td>
+   <td>
+       <switch name="vo['cycletype']">
+        <case value="0">不限周期</case>      
+        <case value="1">一次性</case>
+        <case value="2">每天</case>
+       </switch>
+   </td>
+   <td><eq name="vo['cyclenum']" value='0'>不限次数<else/>{$vo['cyclenum']}</eq></td>
+   <td>{$vo['gold']}</td>   
+</tr>   
+</volist>
+</table>
+</div>
+</div>
+</div>
+</if>
+
+<if condition="$tabNow eq 'bind' ">
+<div class='b-box'>
+<h3 class='hover'>帐号绑定：</h3>
+<div style='' class='m-box'>
+<ul>
+<li><span class='span_l'>邮箱绑定：</span>{$user['email']|hiddenEmail}</li>
+{:hook('accountBind')}
+</ul>
+</div>
+</div>
+
+</if>
+
+</div>
+<div class="shadow"></div>
+<script>
+//帐号处理
+account.init();
+</script>

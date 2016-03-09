@@ -1,0 +1,40 @@
+<div class='weiboBlock weibo_id_{$weibo["id"]}'>
+
+<div class='content'><a href='{:U("Space/index")}'>{$weibo['uid']|getname=###}:</a>
+<?php if($weibo['transpond_id']>0) echo '转发：'; ?>
+{$weibo['content']|formatWeibo=###}
+
+<php>
+if($weibo['transpond_id']>0){
+ $tra=getTranspondData($weibo['transpond_id']);
+ echo $tra['html'];
+}
+</php>
+
+</div>
+<php>if($weibo['transpond_id']>0 && $tra['wid']>0){
+    $one=D('Weibo')->where('id='.$tra['wid'])->find();
+</php>
+<div class='ForwardingShow'>
+{:W('Weibo',array('mid'=>$mid,'weibo'=>$one,'is_transpond'=>1) )}
+</div>
+<php>}</php>
+
+<php>if($weibo['type']==1){</php>
+<div class='weibo_pic'><img  src="__ROOT__/{$weibo['type_data']['path']}s_{$weibo['type_data']['name']}"></div>
+<php>}</php>
+
+<div class='weibo_bar'>
+<span class='l'>{$weibo['ctime']|normaltime=###}</span>
+<span class='r'>
+<php>if($is_transpond==0){</php>
+<php>if($weibo['uid']==$mid){</php>
+<a href='javascript:void(0);' class='' onclick='weiboBlock.delweibo({$weibo["id"]});'>删除</a><span class="pipe">|</span>
+<php>}</php>
+<a href='javascript:void(0);' class='' onclick='weiboBlock.showForwarding({$weibo["id"]});'>转发({$weibo['transpond']})</a><span class="pipe">|</span>
+<a href='javascript:void(0);' class='' onclick='weiboBlock.showComment({$weibo["id"]});'>评论({$weibo['comment']})</a>
+<php>}</php>
+</span>
+</div>
+
+</div>

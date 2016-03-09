@@ -1,0 +1,108 @@
+/*----------------register-----------------------*/
+
+.register {
+	padding: 10px;
+	background: #FFF;
+	width: 100%;
+	border: 1px solid #CCC;
+	border-radius: 3px;
+}
+
+.register h1 {
+	color: #3B5998;
+	font-size: 16px;
+	font-weight: bold;
+	padding: 6px;
+}
+
+.reg_li_1 {
+	float: left;
+	text-align: right;
+	width: 85px;
+	padding-right: 10px;
+}
+
+.reg_li_2 {
+	float: left;
+	width: 260px;
+}
+
+.reg_li_3 {
+	float: left;
+	padding-left: 10px;
+}
+
+.register li {
+	float: left;
+	width: 100%;
+	padding: 10px 0;
+	line-height: 35px;
+	font-size: 14px;
+}
+
+.register input[type=text],.register input[type=password]{
+	border: 1px solid #DDD;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	height: 33px;
+	line-height: 30px;
+	padding: 0 5px;
+}
+
+.register em {
+	color: red;
+	font-variant: normal;
+	font-style: normal;
+	font-family: Tahoma, Verdana, helvetica;
+}
+.emailmore{width:200px;overflow:hidden;position: absolute;top:36px;left:0;border: 1px solid #ccc;background: #FFE;padding:0;z-index: 100;}
+.emailmore .em_li{width:200px;font-size:12px;border-bottom: 1px solid #ddd;padding:4px 0;line-height: 20px;}
+
+/*--------------login------------------*/
+.dologin{margin-top:32px;margin-bottom:20px;padding:10px;background: #FFF;border:1px solid  #CCC;border-radius:3px;}
+
+.loginBlock h1{color:#3B5998;font-size: 16px;font-weight: bold;padding:6px;}
+.loginBlock li{
+float: left;
+width: 100%;
+padding: 10px 0;
+line-height: 35px;
+font-size: 14px;
+}
+
+.loginBlock input[type=text],.loginBlock input[type=password]{	
+border: 1px solid #DDD;
+font-family: Arial,Helvetica,sans-serif;
+font-size: 18px;
+height: 33px;
+line-height: 30px;
+padding: 0 5px;
+}
+.login_l{
+width: 360px;
+float: left;
+}
+.login_r{
+margin-left: 362px;
+border-left: #ccc solid 1px;
+padding: 10px 0 0 10px;
+}
+.third_login{}
+.third_login_title{
+margin-top:10px;
+border-top: 1px solid #C9C9C9;
+color: #666;
+font-size:12px;
+line-height: 24px;
+height: 24px;
+}
+.login_li_1 {
+	float: left;
+	text-align: right;
+	width: 65px;
+	padding-right: 10px;
+}
+.login_li_2 {
+	float: left;
+	width: 200px;
+}

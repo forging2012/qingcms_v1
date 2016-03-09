@@ -1,0 +1,26 @@
+<include file="Public:header"/>
+
+<div class="Sysmessage">
+
+<present name="message" >
+<div class='l_success'> </div>
+<else/>
+<div class='l_error'> </div>
+</present>
+<div class='r'>
+	<div class="msg">
+	<present name="message" >
+	<span class="success">提示信息：{$message}</span>
+	<else/>
+	<span class="error">提示信息：{$error}</span>
+	</present>
+	</div>
+	<div class="tip">
+       <a href="javascript:history.back()">[ 点击这里返回上一页 ]</a>
+	</div>
+</div>
+
+
+</div>
+
+<include file="Public:footer"/>

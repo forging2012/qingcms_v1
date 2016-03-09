@@ -1,0 +1,32 @@
+<include file="Public:header"/>
+
+<div class="Sysmessage">
+
+<?php if($isture){ ?>
+
+<div class='l_success'> </div>
+<div class='r'>
+	<div class="msg"><span class="success">提示信息：{$msg}</span></div>
+	<div class="tip"><a href="{$url}">如果您的浏览器没有自动跳转，请点击此链接...</a></div>
+</div>
+
+<?php }else{ ?>
+
+<div class='l_error'> </div>
+<div class='r'>
+	<div class="msg"><span class="error">提示信息：{$msg}</span></div>
+	<div class="tip"><a style='margin-right: 10px;' href="javascript:history.back();">[ 点击这里返回上一页 ]</a><a href="__APP__">[回到首页]</a></div>
+</div>
+
+<?php } ?>
+</div>
+<?php if($url>''){ ?>
+<script>
+setTimeout('jump()',1200);
+function jump(){
+ window.location.href="{$url}";
+}
+</script>
+<?php } ?>
+
+<include file="Public:footer"/>

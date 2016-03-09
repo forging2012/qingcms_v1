@@ -1,0 +1,60 @@
+
+.channel{float:left;width:460px;height:40px;position:relative;z-index:99}
+.home{margin-left:16px}
+.topTab{position:relative;display:block;float:left;cursor:pointer}
+.topTab .tablink{position:relative;padding:1px 12px;line-height:39px;height:39px;display:block;color:#fff;font-size:14px;z-index:99;float:left}
+
+.topTab:hover{background-color:#FFF}
+.topTab:hover .tablink{color:#333;border:1px solid #ccc;padding:0 11px;text-decoration:none}
+
+.dropdown:hover .tablink{border-bottom:1px solid #FFF;border-left:1px solid #ccc;height:40px}
+
+.dropdown:hover .hiddenlink{position:absolute;display:block;margin-left:-1px;top:41px;left:1px;z-index:9}
+.hiddenlink{width:240px}
+.hiddenlink a{padding:4px 0 4px 10px;line-height:16px;width:70px;display:block;white-space:nowrap;color:#333;float:left}
+.hiddenlink a:hover{text-decoration:underline;color:#f60}
+.dropdown .hiddenlink{display:none;background-color:#FFF;border:1px solid #ccc;padding:8px}
+
+.channel .topTab a.hover{background: #FFF;color: #333;}
+
+
+.tab{
+width: 100%;
+	margin: 10px 0;
+}
+.tab a{
+padding:4px 20px;
+float: left;
+height: 26px;
+line-height:26px;
+text-align: center;
+font-size: 14px;
+margin-right: 10px;
+color: #666;
+background: #F6F6F6;
+border: 1px solid ;
+/* border: 1px solid  #ddd; */
+border-color: #eee #ccc #ccc #ddd; 
+}
+.tab a:HOVER{
+background: #eaeaea;
+}
+.tab a.hover{
+background: #555;
+color: #FFF;
+}
+
+.tab_nav{
+padding: 0 10px;
+height: 32px;
+}
+.tab_nav a{
+float: left;
+line-height: 28px;
+height:28px;
+margin: 0 10px;
+}
+.tab_nav a.hover{
+border-bottom: 3px #ffa210 solid;
+color: #ffa210;
+}

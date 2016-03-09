@@ -1,0 +1,25 @@
+<span>搜索栏目：</span>
+<select name='cate' class='select'> 
+<option value='' <if condition="$_GET['cate'] eq '' ">selected="selected"</if>>全部栏目</option>
+<volist name='cate' id='vo'>
+<option value='{$vo["id"]}'  <if condition="$_GET['cate'] eq $vo['id']">selected="selected"</if> > {$vo['name']} </option>
+<volist name='vo["cate2"]' id='vo2'>
+<option value='{$vo2["id"]}' <if condition="$_GET['cate'] eq $vo2['id']">selected="selected"</if> >  &nbsp;&nbsp;&nbsp;&nbsp;{$vo2['name']}</option>
+</volist>
+</volist>
+</select>
+<span>搜索时间：</span>
+<select name='time' class='select'> 
+<option  value='' <if condition="$_GET['time'] eq '' ">selected="selected"</if>>全部时间</option>
+<volist name='time' id='vo'>
+<option value='{$key}'  <if condition="$_GET['time'] eq $key ">selected="selected"</if> > {$vo} </option>
+</volist>
+</select>
+<span>排序:</span>
+<select name='sort' class='select'> 
+<option value='' <if condition="$_GET['sort'] eq '' ">selected="selected"</if>>默认</option>
+<volist name='sort' id='vo'>
+<option value='{$key}'  <if condition="$_GET['sort'] eq $key ">selected="selected"</if> > {$vo} </option>
+</volist>
+</select>
+<input type='hidden' name='adv' value='yes'>

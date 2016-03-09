@@ -1,0 +1,64 @@
+<include file="Public:header_space"/>
+<div class="main_left">
+
+<div class="space_title">
+<a href='__APP__/User'>个人中心</a>
+</div>
+
+<div class='tab'>
+<volist name='tab' id='vo'>
+<php>if($key==$tabNow){</php>
+<a href='javascript:void(0);' class="hover">{$vo}</a>
+<php>}else{</php>
+<a href='{:U("User/$action?ac=$key")}'>{$vo}</a>
+<php>}</php>
+</volist>
+<div class='c'></div>
+</div>   
+
+<if condition="ACTION_NAME eq 'index' ">
+<div class='doingBox'>
+<volist name="list" id="vo">
+{:W('Contentblock',array('mid'=>$mid,'t'=>$vo,'tag'=>getTag($vo['id'])))}
+</volist>
+</div>
+<div class='loadMoreDiv'>
+<a id="loadMore" href="javascript:void(0)" onclick='loadmore.load();' lastId={$lastId} ><span class="ico_loadmore"></span>更多</a>
+</div>
+<script>	
+loadmore.init();
+</script>
+</if>
+
+<if condition="ACTION_NAME eq 'comment' ">
+<include file="User:comment"/>
+</if>
+
+<if condition="ACTION_NAME eq 'message' ">
+<include file="User:message"/>
+</if>
+
+<if condition="ACTION_NAME eq 'account' ">
+<include file="User:account"/>
+</if>
+
+
+</div>
+<div class='main_right space_r' >
+<div class='rightBox'>
+<include file="Space:userbar"/>
+<div class='usermenu'>
+<ul>
+<li <if condition="ACTION_NAME eq 'index'"> class='hover' </if>><a href='{:U("User/index")}'>我的首页</a></li>
+<li <if condition="ACTION_NAME eq 'comment'"> class='hover' </if>><a href='{:U("User/comment")}'>我的评论</a></li>
+<li <if condition="ACTION_NAME eq 'message'"> class='hover' </if>><a href='{:U("User/message")}'>消息中心</a></li>
+<li <if condition="ACTION_NAME eq 'account'"> class='hover' </if>><a href='{:U("User/account")}'>帐号设置</a></li>
+
+</ul>
+</div>
+</div>
+<div class="shadow_r"></div>
+
+
+</div>
+<include file="Public:footer"/>

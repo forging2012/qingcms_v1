@@ -1,0 +1,10 @@
+<div class='tab'>
+<volist name='tab' id='vo'>
+<php>if($key==$tabNow){</php>
+<a href='javascript:void(0);' class="hover">{$vo}</a>
+<php>}else{</php>
+<a href='{:U("Home/$action?ac=$key")}'>{$vo}</a>
+<php>}</php>
+</volist>
+<div class='c'></div>
+</div>   

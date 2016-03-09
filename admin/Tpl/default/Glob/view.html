@@ -1,0 +1,60 @@
+<include file="Public:header" />
+<div>
+	<h1 class='title'>页面设置</h1>
+</div>
+<div class='view'>
+	<form action="__URL__/setView" method="post">
+		<h3 class="title">字数限制</h3>
+		<div>
+			<span>文章最小字数：<input type='text' name='minlength'
+				value='{$minlength}'></span> <span>文章最大字数：<input type='text'
+				name='length' value='{$length}'></span>
+		</div>
+		<div>
+			<span>评论最小字数：<input type='text' name='minComLen'
+				value='{$minComLen}'></span> <span>评论最大字数：<input type='text'
+				name='comLen' value='{$comLen}'></span>
+		</div>
+		<h3 class="title">分页显示限制</h3>
+		<div>
+			文章每页显示条数：<input type='text' name='textPage' value='{$textPage}'>
+		</div>
+<!-- 		<div> -->
+<!-- 			评论每页显示条数：<input type='text' name='comPage' value='{$comPage}'> -->
+<!-- 		</div> -->
+<!-- 		<div> -->
+<!-- 			ajax评论显示条数：<input type='text' name='comAjaxLen' value='{$comAjaxLen}'> -->
+<!-- 		</div> -->
+
+		<h3 class="title">发布分类必填</h3>
+		<div>
+			<span>是 <input type="radio" name='cateMust' value='1'
+			<if condition="$cateMust eq 1">checked='checked'</if> >
+			</span> <span>否 <input type="radio" name='cateMust' value='0'
+			<if condition="$cateMust eq 0">checked='checked'</if>>
+			</span>
+		</div>
+		<h3 class="title">Top10显示的内容</h3>
+		<div>
+		    <select name='top10'>
+					<volist name='top10List' id='vo'>
+					<option value="{$vo['id']}" <?php if($top10==$vo['id']) echo "selected='selected'"; ?> >{$vo['t']}</option>
+					</volist>
+			</select>
+		</div>
+		<h3 class="title">开启rewrite</h3>
+		<div>
+			<span>是 <input type="radio" name='isRewrite' value='1'
+			<if condition="$isRewrite eq 1">checked='checked'</if> >
+			</span> <span>否 <input type="radio" name='isRewrite' value='0'
+			<if condition="$isRewrite eq 0">checked='checked'</if>>
+			</span>
+			<span>&nbsp;&nbsp;&nbsp;&nbsp;请不要轻易更改.htaccess文件，需要更改相应规则home/common.php/url_rewrite()、core/Class/iPage.php/formatUrl()</span>
+		</div>
+
+		<div style='margin: 10px 0;'>
+			<input class="btn_input" type="submit" value="确定">
+		</div>
+	</form>
+</div>
+<include file="Public:footer" />
