@@ -1,0 +1,33 @@
+      ////////////////////////////////
+      /////      QingCms   //////////
+      //////////////////////////////   
+      ע�⣺���thinkphp�����ļ���Ӱ�쵽admin/home����Ӧ��
+
+--2012��8��26�� 19:22:08
+
+runtime.php
+161��
+
+
+ /////////////////////////////
+    ////////QINGCMS  ///////////
+    ///////////////////////////
+    if (defined ( 'STRIP_RUNTIME_SPACE' ) && STRIP_RUNTIME_SPACE == false) {
+    	file_put_contents ( RUNTIME_FILE, '<?php ' . $content );
+    } else {
+    	file_put_contents ( RUNTIME_FILE, strip_whitespace ( '<?php ' . $content ) );
+    }
+    /*
+    file_put_contents(RUNTIME_FILE,strip_whitespace('<?php '.$content));
+    */
+
+--2012.11.06
+
+app.class.php
+
+h56:       $templateSet=defined('QC_DEFAULT_THEMES')?QC_DEFAULT_THEMES:'default';
+
+--2014.12.07
+Widget.class.php line64
+
+
