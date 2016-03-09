@@ -3,8 +3,8 @@
 RewriteEngine On
 
 # 修改以下语句中的 /qingcms 为您的目录地址，如果程序放在根目录中，请将 /qingcms 修改为 /
-RewriteBase /qingcms_demo/public
-#RewriteBase /
+#RewriteBase /qingcms_demo/public
+RewriteBase /
 
 #301
 RewriteCond %{HTTP_HOST} ^qingcms.com [NC]
