@@ -26,7 +26,7 @@ if(INSTALL_DEBUG){
 	error_reporting(0);
 }
 
-defined('PATH_INSTALL') or define('PATH_INSTALL', realpath(dirname(__FILE__)) );   //安装根路径
+defined('PATH_INSTALL') or define('PATH_INSTALL', __DIR__ );   //安装根路径
 defined('PATH_DATA')    or define('PATH_DATA',    PATH_INSTALL.'/data' );   
 defined('PATH_SOURCE')  or define('PATH_SOURCE',  PATH_INSTALL.'/source' );
 defined('PATH_TPL')     or define('PATH_TPL',     PATH_SOURCE.'/tpl' );   	       //视图路径

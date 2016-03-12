@@ -20,8 +20,9 @@ QingCms-轻内容管理系统
 - 环境：PHP + MySQL
 - 采用thinkphp框架v3.0。
 
-- 网站入口: /public
+- 网站入口: /public 
 - 安装入口： /public/install，按要求执行安装
 - 安装后可手动删除install目录
 
- 
+- 网站入口： http://*.com/public/index.php
+- 安装入口：http://*.com/public/install

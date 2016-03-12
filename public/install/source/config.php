@@ -23,8 +23,8 @@ $_CONFIG['file_table']  =PATH_DATA.'/db_table.sql';
 //数据文件
 $_CONFIG['file_data']  	=PATH_DATA.'/db_data.sql';
 //要安装的应用目录
-$_CONFIG['path_app']	=realpath(PATH_INSTALL.'/..');
+$_CONFIG['path_app']	=realpath(PATH_INSTALL.'/../..');
 //应用配置要保存的位置
-$_CONFIG['path_config'] =$_CONFIG['path_app'].'/config.db.php';
+$_CONFIG['path_config'] =$_CONFIG['path_app'].'/source/config/config.db.php';
 //qingcms版本
 $_CONFIG['version'] 	='QingCms V1.0 UTF-8';     					

@@ -8,6 +8,7 @@
 define("IN_WWW", true);
 define('APP_DEBUG'		,false);
 define('APP_ERROR_LEVEL',E_ALL ^ E_NOTICE ^ E_WARNING ^ E_DEPRECATED);
+define("SECURE_ON"		,false);
 
 // 定义项目名称和路径
 define('APP_NAME'		, 'admin' );
