@@ -4,7 +4,7 @@ QingCms-轻内容管理系统
 
 - http://www.qingcms.com/
 - http://www.logo234.com/  
-  
+- http://d.mangdian.net  
 
 ##程序说明：
 
